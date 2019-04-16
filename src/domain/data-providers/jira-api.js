@@ -6,8 +6,13 @@ function getJira(name, password, callback) {
     jira.board.getAllBoards(
         {},
         (error, board) => {
-            callback(board)
-            console.log(board);
+            if (error){
+                console.log('no response from jira' + error); 
+            }else{
+                callback(board)
+                console.log(board);
+            }
+            
         }
     )
 }

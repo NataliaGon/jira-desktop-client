@@ -6,14 +6,14 @@ interface FormProperties extends ComponentBaseProperties {
 
 }
 interface FormState extends ComponentBaseState {
-       name?:string;
-       password?:string; 
+    name?: string;
+    password?: string;
 }
 
 export class Form extends ComponentBase<FormProperties, FormState>{
     state = {
-        name:'',
-        password:''
+        name: '',
+        password: ''
     }
 
     handleChangeName = (event: any) => {
@@ -26,19 +26,13 @@ export class Form extends ComponentBase<FormProperties, FormState>{
     }
     handleSubmit = (event: any) => {
         event.preventDefault();
-        console.log(this.state.name);
-        console.log(typeof(this.state.name));
-        console.log(this.state.name.length);
-       (this.state.name.length>0 && this.state.password.length>0)?  this.sendUser():console.log('no')
-    
-        
+        (this.state.name.length > 0 && this.state.password.length > 0) ? this.sendUser() : console.log('no')
     }
-    sendUser =()=>{
+    sendUser = () => {
         const user = {
             name: this.state.name,
             password: this.state.password
         }
-        console.log(user);
         ipcRenderer.send('jira', user);
     }
     public render() {
