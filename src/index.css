@@ -1,6 +1,13 @@
 h1{
     color: brown;
 }
+button{
+    color: rgb(56, 122, 56);
+    border: 1px solid rgb(56, 122, 56);
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size:22px;
+}
 form{
     color: brown;
 }

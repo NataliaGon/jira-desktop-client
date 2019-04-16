@@ -8,9 +8,9 @@ function getJira(name, password, callback) {
         (error, board) => {
             if (error){
                 console.log('no response from jira' + error); 
-            }else{
+            }else{ 
+                //to do save user
                 callback(board)
-                console.log(board);
             }
             
         }
