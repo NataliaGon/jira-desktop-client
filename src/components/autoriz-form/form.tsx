@@ -6,7 +6,8 @@ interface FormProperties extends ComponentBaseProperties {
 
 }
 interface FormState extends ComponentBaseState {
-
+       name?:string;
+       password?:string; 
 }
 
 export class Form extends ComponentBase<FormProperties, FormState>{
@@ -23,16 +24,23 @@ export class Form extends ComponentBase<FormProperties, FormState>{
         event.preventDefault();
         this.setState({ password: event.target.value });
     }
-    handleSubmit=(event: any) =>{
-      event.preventDefault();
-      const user={
-          name:this.state.name,
-          password:this.state.password
-      }
-      console.log(user);
-      ipcRenderer.send('jira', user)
+    handleSubmit = (event: any) => {
+        event.preventDefault();
+        console.log(this.state.name);
+        console.log(typeof(this.state.name));
+        console.log(this.state.name.length);
+       (this.state.name.length>0 && this.state.password.length>0)?  this.sendUser():console.log('no')
+    
+        
     }
-
+    sendUser =()=>{
+        const user = {
+            name: this.state.name,
+            password: this.state.password
+        }
+        console.log(user);
+        ipcRenderer.send('jira', user);
+    }
     public render() {
 
         return (
@@ -42,7 +50,7 @@ export class Form extends ComponentBase<FormProperties, FormState>{
                     <input id="user-name" type="text" name="userName" onChange={this.handleChangeName} /><br /><br />
                     <label>Password</label><br />
                     <input id="password" type="text" name="userAge" onChange={this.handleChangePassw} /><br /><br />
-                    <button id="submit" type="submit" onClick={this. handleSubmit}>
+                    <button id="submit" type="submit" onClick={this.handleSubmit}>
                         Get Jira
                     </button>
                     {/* <input id="myself" type="submit" value="Get Myself" />
