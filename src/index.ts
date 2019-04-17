@@ -1,8 +1,9 @@
-import { app, BrowserWindow,ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
-const getBoard = require('./domain/data-providers/board-api')
-const getUserProfile = require('./domain/data-providers/user')
+const getBoard = require('./domain/data-providers/board-api');
+const getUserProfile = require('./domain/data-providers/user');
+const getUserIssues = require('./domain/data-providers/issues');
 // const { ipcMain } = require('electron');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -11,7 +12,7 @@ let mainWindow: Electron.BrowserWindow | null = null;
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
 if (isDevMode) {
-  enableLiveReload({strategy: 'react-hmr'});
+  enableLiveReload({ strategy: 'react-hmr' });
 }
 
 const createWindow = async () => {
@@ -64,14 +65,18 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-function rend(data:any){
-  mainWindow.send('boards',data);
+function rend(data: any) {
+  mainWindow.send('boards', data);
 }
-function renderUser(data:any){
-console.log(data);
-mainWindow.send('user',data);
+function renderUser(data: any) {
+  mainWindow.send('user', data);
 }
-ipcMain.on('jira', (event:any, user: any)=> {
-  getBoard(user.name, user.password,rend)
-  getUserProfile(user.name, user.password,renderUser)
+function renderIssues(data: any){
+  mainWindow.send('issues', data);
+  console.log(data);
+}
+ipcMain.on('jira', (event: any, user: any) => {
+  getBoard(user.name, user.password, rend)
+  getUserProfile(user.name, user.password, renderUser)
+  getUserIssues(user.name, user.password, renderIssues)
 })
