@@ -2,7 +2,7 @@ import * as React from "react";
 
 const { ipcRenderer } = require('electron')
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
-import from 'boards.css'
+
 
 interface Boardsroperties extends ComponentBaseProperties {
 
@@ -13,24 +13,21 @@ interface BoardsState extends ComponentBaseState {
 
 export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
     state = {
-        boards: Array
+        boards: []
     }
-
-    boardsList = (boards?: any) => {
-        console.log(boards);
-        let html: any;
-        for (let i in boards) {
-            html+= '<li>' + boards[i].name +'</li>'
+    boardsList = () => {
+        if (this.state.boards.length > 0) {
+            return this.state.boards.map(i =>
+                <li className="list-board" key={i.id}>{i.name}</li>
+            )
         }
-        console.log(html);
-        return html
     }
 
     public render() {
         ipcRenderer.on('boards', (event: any, boards: any) => {
             this.setState({ boards: boards.values })
         })
-        const boardsHTML = this.boardsList(this.state.boards);
+        const boardsHTML = this.boardsList();
 
         return (
             <ul>

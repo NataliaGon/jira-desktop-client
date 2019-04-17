@@ -11,3 +11,8 @@ button{
 form{
     color: brown;
 }
+.list-board{
+    display: inline;
+    list-style: none;
+    margin-left: 15px;
+}

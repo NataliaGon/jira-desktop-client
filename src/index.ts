@@ -64,9 +64,9 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 
 function rend(data:any){
-  mainWindow.send('boards', data);
+  mainWindow.send('boards',data);
 }
 ipcMain.on('jira', (event:any, user: any)=> {
-console.log( user)
+
 getJira(user.name, user.password,rend)
 })
