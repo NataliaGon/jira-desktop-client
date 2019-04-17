@@ -16,6 +16,9 @@ form{
     list-style: none;
     margin-left: 15px;
 }
+.list-board:first-child{
+    margin-left: unset;
+}
 .flex{
     display: flex;
     justify-content: space-between;
