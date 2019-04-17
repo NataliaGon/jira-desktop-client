@@ -31,6 +31,7 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
 
         return (
             <ul>
+                <li className="list-board title">Boards</li>
                 {boardsHTML}
             </ul>
         )

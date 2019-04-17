@@ -4,6 +4,7 @@ import { enableLiveReload } from 'electron-compile';
 const getBoard = require('./domain/data-providers/board-api');
 const getUserProfile = require('./domain/data-providers/user-api');
 const getUserIssues = require('./domain/data-providers/issues-api');
+const dataLocal = require('./domain/data-providers/local.js');
 // const { ipcMain } = require('electron');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -73,7 +74,7 @@ function renderUser(data: any) {
 }
 function renderIssues(data: any){
   mainWindow.send('issues', data);
-  console.log(data);
+  dataLocal.save(data)
 }
 ipcMain.on('jira', (event: any, user: any) => {
   getBoard(user.name, user.password, rend)
