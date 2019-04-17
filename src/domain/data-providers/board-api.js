@@ -16,5 +16,6 @@ function getJira(name, password, callback) {
         }
     )
 }
+
 	
 module.exports= getJira;

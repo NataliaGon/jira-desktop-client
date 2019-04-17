@@ -4,7 +4,7 @@ const { ipcRenderer } = require('electron')
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 
 
-interface Boardsroperties extends ComponentBaseProperties {
+interface BoardsProperties extends ComponentBaseProperties {
 
 }
 interface BoardsState extends ComponentBaseState {

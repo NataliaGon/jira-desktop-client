@@ -16,3 +16,9 @@ form{
     list-style: none;
     margin-left: 15px;
 }
+.flex{
+    display: flex;
+}
+.user-container{
+    margin-left: 30px;
+}
