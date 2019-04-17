@@ -30,7 +30,7 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
         const boardsHTML = this.boardsList();
 
         return (
-            <ul>
+            <ul className="container-boards" >
                 <li className="list-board title">Boards</li>
                 {boardsHTML}
             </ul>
