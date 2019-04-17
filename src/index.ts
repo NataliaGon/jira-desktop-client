@@ -2,8 +2,8 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
 const getBoard = require('./domain/data-providers/board-api');
-const getUserProfile = require('./domain/data-providers/user');
-const getUserIssues = require('./domain/data-providers/issues');
+const getUserProfile = require('./domain/data-providers/user-api');
+const getUserIssues = require('./domain/data-providers/issues-api');
 // const { ipcMain } = require('electron');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
