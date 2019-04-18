@@ -47,3 +47,8 @@ form{
   background-color: aliceblue;
   height: 100%;
 }
+.draggable-box{
+    background-color: palegreen;
+    width: 100%;
+    height: 100px;
+}
