@@ -5,7 +5,11 @@ const getBoard = require('./domain/data-providers/board-api');
 const getUserProfile = require('./domain/data-providers/user-api');
 const getUserProject = require('./domain/data-providers/project-api');
 const dataLocal = require('./domain/data-providers/local.js');
+const ProjectsStore = require('./data/projects-store.js')
 
+
+
+const projectsData = new ProjectsStore({ name: 'Projects Main' });
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow | null = null;
@@ -73,13 +77,14 @@ function renderUser(data: any) {
   mainWindow.send('user', data);
 }
 function renderProject(data: any){
-  mainWindow.send('issues', data);
-  dataLocal.save(data)
+  mainWindow.send('projects', data);
+  dataLocal.save(data[0]);
+  projectsData.addProjects(data[0]);
   // const projects = dataLocal.read( JSON.parse(`${__dirname}/data/projects.json`) );
   // console.log('yes:' projects);
 }
 ipcMain.on('jira', (event: any, user: any) => {
-  getBoard(user.name, user.password, rend)
-  getUserProfile(user.name, user.password, renderUser)
-  // getUserProject(user.name, user.password, renderProject)
+  getBoard(user.name, user.password, rend);
+  getUserProfile(user.name, user.password, renderUser);
+  getUserProject(user.name, user.password, renderProject);
 })
