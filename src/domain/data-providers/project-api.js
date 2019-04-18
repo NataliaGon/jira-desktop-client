@@ -1,6 +1,6 @@
 const jiraFunction = require('../autorization/user');
 
-function getIssues(name, password, callback) {
+function getProject(name, password, callback) {
     const jira = jiraFunction(name, password)
     jira.project.getProject(
         '10022',
@@ -9,4 +9,4 @@ function getIssues(name, password, callback) {
         }
     )
 }
-module.exports= getIssues;
+module.exports= getProject;

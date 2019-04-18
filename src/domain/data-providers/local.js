@@ -7,7 +7,11 @@ module.exports = {
         });
     },
     read: function (file) {
-        return fs.readFileSync((file))
+         fs.readFile(file, (error, data)=> {
+            if (error) return 'error read file'
+            console.log('file:' + error);
+            console.log(data);
+        })
     }
 }
 

@@ -3,9 +3,9 @@ import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-insta
 import { enableLiveReload } from 'electron-compile';
 const getBoard = require('./domain/data-providers/board-api');
 const getUserProfile = require('./domain/data-providers/user-api');
-const getUserIssues = require('./domain/data-providers/issues-api');
+const getUserProject = require('./domain/data-providers/project-api');
 const dataLocal = require('./domain/data-providers/local.js');
-// const { ipcMain } = require('electron');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow | null = null;
@@ -72,12 +72,14 @@ function rend(data: any) {
 function renderUser(data: any) {
   mainWindow.send('user', data);
 }
-function renderIssues(data: any){
+function renderProject(data: any){
   mainWindow.send('issues', data);
   dataLocal.save(data)
+  // const projects = dataLocal.read( JSON.parse(`${__dirname}/data/projects.json`) );
+  // console.log('yes:' projects);
 }
 ipcMain.on('jira', (event: any, user: any) => {
   getBoard(user.name, user.password, rend)
   getUserProfile(user.name, user.password, renderUser)
-  getUserIssues(user.name, user.password, renderIssues)
+  // getUserProject(user.name, user.password, renderProject)
 })
