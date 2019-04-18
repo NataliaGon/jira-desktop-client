@@ -4,6 +4,7 @@ import { Boards } from './components/boards/boards';
 import { User } from './components/user/user';
 import { Table } from './components/table/table';
 
+
 export class App extends React.Component<undefined, undefined> {
 
 
@@ -17,6 +18,7 @@ export class App extends React.Component<undefined, undefined> {
         </div>
         <Boards />
         <Table/>
+
       </div>
     );
   }

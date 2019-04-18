@@ -17,7 +17,7 @@ export class Draggable extends ComponentBase<DraggableProperties, TDraggableStat
     }
     public render() {
         return (
-            <div className="draggable-box">
+            <div className="draggable-box"  draggable="true">
             
             </div>
         )
