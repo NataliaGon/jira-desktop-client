@@ -15,10 +15,13 @@ export class User extends ComponentBase<UserProperties, UserState>{
     state = {
       user:{}
     }
-    public render() {
+    componentDidMount(){
         ipcRenderer.on('user', (event: any, user: any) => {
             this.setState({ user: user})
         })
+    }
+    public render() {
+
         return (
          <div className="user-container">
           <h3> {this.state.user.displayName} </h3>
