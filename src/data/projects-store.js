@@ -12,11 +12,9 @@ class ProjectsStore extends Store {
     this.set('projects', this.projects)
     console.log('save electr store');
     return this
-    
   }
 
   getProjects () {
-
     this.projects = this.get('projects') || []
     return this
   }

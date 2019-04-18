@@ -78,8 +78,9 @@ function renderUser(data: any) {
 }
 function renderProject(data: any){
   mainWindow.send('projects', data);
-  dataLocal.save(data[0]);
-  projectsData.addProjects(data[0]);
+  console.log(data);
+  // dataLocal.save(data);
+  // projectsData.addProjects(data);
   // const projects = dataLocal.read( JSON.parse(`${__dirname}/data/projects.json`) );
   // console.log('yes:' projects);
 }

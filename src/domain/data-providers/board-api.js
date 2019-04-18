@@ -5,12 +5,13 @@ function getJira(name, password, callback) {
     const jira = jiraFunction(name, password)
     jira.board.getAllBoards(
         {},
-        (error, board) => {
+        (error, boards) => {
             if (error){
                 console.log('no response from jira' + error); 
             }else{ 
                 //to do save user
-                callback(board)
+                callback(boards)
+                // console.log(boards);
             }
             
         }
