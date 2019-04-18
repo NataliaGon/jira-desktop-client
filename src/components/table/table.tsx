@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 import { Draggable } from '../draggable-box/draggable-box';
+import { Issues } from '../issues-container/issues-container';
 
 
 interface TableProperties extends ComponentBaseProperties {
@@ -32,6 +33,16 @@ export class Table extends ComponentBase<TableProperties, TableState>{
                 { issue: 'site2', id: '8', idC: 'urgent' }
             ]
         }
+        allIssues: [
+            { issue: 'img', id: '1', idC: 'open' },
+            { issue: 'animation', id: '2', idC: 'open' },
+            { issue: 'react', id: '3', idC: 'inProgress' },
+            { issue: 'electron', id: '4', idC: 'inProgress' },
+            { issue: 'site1', id: '5', idC: 'close' },
+            { issue: 'site2', id: '6', idC: 'close' },
+            { issue: 'site1', id: '7', idC: 'urgent' },
+            { issue: 'site2', id: '8', idC: 'urgent' }
+        ]
     };
 
     moveCard(data: any, newList: any) {
@@ -40,12 +51,20 @@ export class Table extends ComponentBase<TableProperties, TableState>{
                 let filteredData = this.state.data[i].filter((j?: any) => j.id !== data.cardId)
                 let state = this.state;
                 state.data[i] = filteredData
-                this.setState({ state:state });
-
+                this.setState({ state: state });
             }
         }
-
-
+ 
+        let state = this.state;
+        state.data[newList].push(this.getIssue(data.cardId));
+        this.setState({ state: state });
+    }
+    getIssue =(id:any)=> {
+        for (let i of this.state.allIssues) {
+            if (i.id == id) {  
+                return i
+            }
+        }
     }
     onDragOver = (e: any) => {
         e.preventDefault();
@@ -53,10 +72,8 @@ export class Table extends ComponentBase<TableProperties, TableState>{
     onDrop = (e: any) => {
         const newList = e.currentTarget.id;
         e.preventDefault();
-        // const toListId = ev.currentTarget.dataset.id;
         const data = JSON.parse(e.dataTransfer.getData("text"));
         this.moveCard(data, newList);
-        // moveCard(data.fromListId, toListId, data.cardId);
     }
     onDragCard = (e: any) => {
         const data = {
