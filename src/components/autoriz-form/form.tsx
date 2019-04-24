@@ -7,15 +7,13 @@ interface FormProperties extends ComponentBaseProperties {
 }
 interface FormState extends ComponentBaseState {
     name?: string;
-    password?: string;
-  
+    password?: string; 
 }
 
 export class Form extends ComponentBase<FormProperties, FormState>{
     state = {
         name: '',
         password: '',
-   
     }
 
     handleChangeName = (event: any) => {

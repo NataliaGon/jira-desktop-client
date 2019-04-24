@@ -19,12 +19,12 @@ class UserStore extends Store {
   }
 
   addUser (users) {
-    this.users = [ ...this.users, users ]
+    this.users = [ users ]
     return this.saveUser()
   }
 
-  deleteUser (user) {
-    this.users = this.users.filter(t => t !== user)
+  deleteUser () {
+    this.users = []
     return this.saveUser()
   }
 

@@ -15,10 +15,13 @@ export class Projects extends ComponentBase<ProjectsProperties, ProjectsState>{
     state = {
         issues:{}
     }
-    public render() {
+    componentDidMount() {
         ipcRenderer.on('projects', (event: any, issues: any) => {
             this.setState({ issues: issues})
         })
+    }
+    public render() {
+       
         return (
          <div className="projects-container">
         

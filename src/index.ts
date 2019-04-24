@@ -63,7 +63,10 @@ app.on('activate', () => {
 
 function rend(data: any, user) {
   mainWindow.send('boards', data);
-  userData.addUser(user);
+  const isUser = userData.getUser().users[0];
+  if (!isUser){
+    userData.addUser(user);
+  }
 }
 function renderUser(data: any) {
   mainWindow.send('user', data);
