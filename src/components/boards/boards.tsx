@@ -20,6 +20,7 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
         ipcRenderer.on('boards', (event: any, boards: any) => {
             this.setState({ boards: boards.values })
         })
+
     }
 
     boardsList = () => {

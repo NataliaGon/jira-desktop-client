@@ -10,7 +10,6 @@ class ProjectsStore extends Store {
 
   saveProject () {
     this.set('projects', this.projects)
-    console.log('save electr store');
     return this
   }
 

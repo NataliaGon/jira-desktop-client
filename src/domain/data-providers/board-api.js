@@ -10,13 +10,15 @@ function getJira(name, password, callback) {
                 console.log('no response from jira' + error); 
             }else{ 
                 //to do save user
-                callback(boards)
-                // console.log(boards);
+                const user={
+                    name:name,
+                    password:password
+                }
+                callback(boards, user)
+                console.log(boards);
             }
             
         }
     )
-}
-
-	
+}	
 module.exports= getJira;
