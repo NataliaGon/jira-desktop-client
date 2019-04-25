@@ -5,7 +5,7 @@ import { User } from './components/user/user';
 import { Table } from './components/table/table';
 import { FormAutor } from './components/authorization/authorization';
 import { TableR } from './components/table/table-react-dnd';
-
+import PinContainer from './components/pin-container/pin-container';
 
 export class App extends React.Component<undefined, undefined> {
 
@@ -21,7 +21,7 @@ export class App extends React.Component<undefined, undefined> {
         </div>
         <Boards />
         <TableR />
-
+        <PinContainer/> 
       </div>
     );
   }

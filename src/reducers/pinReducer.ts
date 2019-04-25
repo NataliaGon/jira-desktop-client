@@ -6,7 +6,6 @@ const initialState = {
 
 export default function pinReducer(state = initialState, action?:any) {
   const issue = action.issue
-  console.log(issue);
   switch (action.type) {
     case TO_PIN:
       return {

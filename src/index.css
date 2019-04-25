@@ -69,3 +69,14 @@ form{
     bottom:15px;
     left:15px;
 }
+.pin-container{
+    position: absolute;
+    bottom:15px;
+    right:15px;
+    width: 100px;
+    height: 50px;
+    background-color: aqua;
+}
+.pin-issue{
+    list-style-type: none;
+}
