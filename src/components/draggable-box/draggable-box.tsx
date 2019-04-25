@@ -32,9 +32,7 @@ interface DraggableState extends ComponentBaseState {
     return (
       <div className="draggable-box" draggable onDragStart={(e: any) => this.props.DragCard(e)} id={this.props.id}>
         {this.props.issue}
-
-        <div className="pin-icon-wrapper"><FaMapPin /></div>
-
+        <div className="pin-icon-wrapper" onClick={()=>this.props.toPin(this)}><FaMapPin /></div>
       </div>
 
 
