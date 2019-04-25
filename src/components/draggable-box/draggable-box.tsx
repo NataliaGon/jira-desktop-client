@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import ItemTypes from './drag-drop-type'
-import { FaMapPin } from 'react-icons/fa';
+import { GoPin } from 'react-icons/go';
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
 import {toPin} from './issue.actions';
@@ -32,7 +32,7 @@ interface DraggableState extends ComponentBaseState {
     return (
       <div className="draggable-box" draggable onDragStart={(e: any) => this.props.DragCard(e)} id={this.props.id}>
         {this.props.issue}
-        <div className="pin-icon-wrapper" onClick={()=>this.props.toPin(this)}><FaMapPin /></div>
+        <div className="pin-icon-wrapper" onClick={()=>this.props.toPin(this)}><GoPin /></div>
       </div>
 
 
