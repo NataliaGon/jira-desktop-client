@@ -2,7 +2,7 @@ import * as React from "react";
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import {Draggable}  from '../draggable-box/draggable-box';
+import Draggable  from '../draggable-box/draggable-box';
 
 
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";

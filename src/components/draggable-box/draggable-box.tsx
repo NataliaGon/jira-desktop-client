@@ -1,10 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 // import ItemTypes from './drag-drop-type'
 import { FaMapPin } from 'react-icons/fa';
-import iconSet from '../../../icons/selection.json';
-
-import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
-
+import { connect } from 'react-redux';
+import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
+import {toPin} from './issue.actions';
 
 interface DraggableProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -12,12 +11,12 @@ interface DraggableProperties extends ComponentBaseProperties {
   id?: any
 }
 interface DraggableState extends ComponentBaseState {
-
+  pin?:boolean
 }
 
-export class Draggable extends ComponentBase<DraggableProperties, TDraggableState>{
+ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
   state = {
-
+     pin:false
   }
 
 
@@ -46,3 +45,14 @@ export class Draggable extends ComponentBase<DraggableProperties, TDraggableStat
   }
 
 }
+
+function mapStateToProps(store:any) {
+  return {
+    store:store.pin
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  {toPin}
+)(Draggable);

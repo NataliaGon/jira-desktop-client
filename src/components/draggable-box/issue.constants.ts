@@ -1,0 +1,1 @@
+export const TO_PIN = 'issue/issue/TO_PIN';
