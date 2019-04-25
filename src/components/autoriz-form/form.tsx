@@ -47,9 +47,6 @@ export class Form extends ComponentBase<FormProperties, FormState>{
                     <button id="submit" type="submit" onClick={this.handleSubmit}>
                         Get Jira
                     </button>
-                    {/* <input id="myself" type="submit" value="Get Myself" />
-                    <input id="issues" type="submit" value="Get Issues" /> */}
-
                 </form>
             </div>
         )

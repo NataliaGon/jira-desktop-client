@@ -20,10 +20,12 @@ export class FormAutor extends ComponentBase<FormAutorProperties, FormAutorState
         user: false
     }
     componentDidMount() {
+        console.log('did Mount');
+        ipcRenderer.send('check-user');
         ipcRenderer.on('login', (event: any, user: any) => {
             this.setState({ user: user })
         })
-        ipcRenderer.send('check-user');
+      
     }
     changeUser=()=>{
         this.setState({user: false});

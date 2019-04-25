@@ -62,4 +62,10 @@ form{
     padding: 15px;
     box-sizing: border-box;
     border-radius: 5px;
+    position: relative;
+}
+.pin-icon-wrapper{
+    position: absolute;
+    bottom:15px;
+    left:15px;
 }

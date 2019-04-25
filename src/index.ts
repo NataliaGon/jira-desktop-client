@@ -39,8 +39,6 @@ const createWindow = async () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-
-
 };
 
 app.on('ready', createWindow);
@@ -73,8 +71,6 @@ function renderUser(data: any) {
 }
 function renderProject(data: any) {
   mainWindow.send('projects', data);
-  console.log(data);
-
 }
 ipcMain.on('jira', (event: any, user: any) => {
   getBoard(user.name, user.password, rend);
