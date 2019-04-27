@@ -2,9 +2,6 @@ import * as React from "react";
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import Draggable  from '../draggable-box/draggable-box';
-
-
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 
 
@@ -86,12 +83,11 @@ export class TableR extends ComponentBase<TableRProperties, TableRState>{
     }
     getContainers = (data: any) => {
         return data.map((i: any) =>
-            <Draggable  DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
+            <div className="draggable-box" draggable onDragStart={(e: any) => this.onDragCard(e)} key={i.id} id={i.id}>{i.issue}</div>
         )
     }
 
     public render() {
-
         return (
             <div className="table">
                 <div className="droppable-container" onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'open'}>
@@ -104,16 +100,15 @@ export class TableR extends ComponentBase<TableRProperties, TableRState>{
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'urgent'}>
                     <h3>close</h3>
-                    {this.getContainers(this.state.data.urgent)}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'} >
+                    {this.getContainers(this.state.data.urgent)}</div>
+                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'}>
                     <h3>
                         urgent
                     </h3>
-                    {this.getContainers(this.state.data.close)}
-                </div>
+                    {this.getContainers(this.state.data.close)}</div>
             </div>
-         
+
         )
     }
+
 }
