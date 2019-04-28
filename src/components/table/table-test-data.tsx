@@ -15,7 +15,7 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
         data: [
             { issue: 'img', id: '1', priority: 'medium', status: 'In progress', duedate: '2018-12-30', created: '2019-01-03T12:03:15.000+0000' },
             { issue: 'animation', id: '2', priority: 'medium', status: 'Open', duedate: '2019-01-30', created: '2019-01-04T12:03:15.000+0000' },
-            { issue: 'react', id: '3', priority: 'low', status: 'Close', duedate: '2018-12-30', created: '2017-01-03T12:03:45.000+0000' },
+            { issue: 'react', id: '3', priority: 'low', status: 'Closed', duedate: '2018-12-30', created: '2017-01-03T12:03:45.000+0000' },
             { issue: 'electron', id: '4', priority: 'medium', status: 'Stalled', duedate: '2018-08-15', created: '2017-01-03T12:03:15.000+0000' },
             { issue: 'site1', id: '5', priority: 'high', status: 'Internal review', duedate: '2018-10-27', created: '2019-02-03T12:03:15.000+0000' },
             { issue: 'site2', id: '6', priority: 'low', status: 'Client review', duedate: '2019-12-25', created: '2018-04-03T12:03:15.000+0000' },
@@ -61,10 +61,17 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
         e.dataTransfer.setData('text', JSON.stringify(data));
     }
     getContainers = (data: any) => {
-        return data.map((i: any) =>
+        return data.map((i?: any) =>
             <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
         )
     }
+    getIssues =(status?:string)=>{
+        const issues = this.state.data.filter(item => item.status == status);
+        console.log(issues);
+        return issues.map((i?: any)=> 
+        <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
+        )
+    } 
 
     public render() {
 
@@ -72,33 +79,34 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
             <div className="table">
                 <div className="droppable-container" onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'open'}>
                     <h3>Open</h3>
-                    {this.getContainers(this.state.data)}
+                    {this.getIssues('Open')}
+
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'inProgress'}>
                     <h3>In progress</h3>
-                    {this.getContainers(this.state.data)}
+                    {this.getIssues('In progress')}
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'urgent'}>
                     <h3>
                         Stalled</h3>
-                    {this.getContainers(this.state.data)}
+                        {this.getIssues('Stalled')}
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'urgent'}>
                     <h3>
                         Internal review</h3>
-                    {this.getContainers(this.state.data)}
+                        {this.getIssues('Internal review')}
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'} >
                     <h3>
-                        Client Review
+                        Client review
                     </h3>
-                    {this.getContainers(this.state.data)}
+                    {this.getIssues('Client review')}
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'} >
                     <h3>
                         Closed
                     </h3>
-                    {this.getContainers(this.state.data)}
+                    {this.getIssues('Closed')}
                 </div>
             </div>
 
