@@ -98,12 +98,13 @@ export class Table extends ComponentBase<TableProperties, TableState>{
                     {this.getContainers(this.state.data.inProgress)}
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'urgent'}>
-                    <h3>close</h3>
+                    <h3>
+                        internal review</h3>
                     {this.getContainers(this.state.data.urgent)}
                 </div>
                 <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'} >
                     <h3>
-                        urgent
+                        close
                     </h3>
                     {this.getContainers(this.state.data.close)}
                 </div>
