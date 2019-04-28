@@ -28,13 +28,8 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
     moveCard(data: any, newList: any) {
         for (let i in this.state.data) {
             if(this.state.data[i].id == data.cardId){
-                console.log(this.state.data[i].id);
-                console.log(data.cardId);
-                console.log(newList);
                 let state = this.state.data;
-                state[i].status=newList
-                // this.state.data[i].status = newList;
-                console.log(state);
+                state[i].status=newList;
                 this.setState({data:state});
                 // this.forceUpdate()
                 // this.setState({data:update(this.state.data, {i:{status:{$set:newList}}})});
@@ -54,10 +49,8 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
     }
     onDrop = (e: any) => {
         const newList = e.currentTarget.id;
-        console.log(newList);
         e.preventDefault();
         const data = JSON.parse(e.dataTransfer.getData("text"));
-        console.log(data);
         this.moveCard(data, newList);
     }
     onDragCard = (e: any) => {
@@ -65,7 +58,6 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
             cardId: e.currentTarget.id,
             oldlistId: e.currentTarget.parentElement.id
         }
-        console.log(data);
         e.dataTransfer.setData('text', JSON.stringify(data));
     }
     getIssues =(status?:string)=>{
