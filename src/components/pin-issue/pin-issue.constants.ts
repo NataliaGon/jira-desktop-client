@@ -1,0 +1,1 @@
+export const DELETE_PIN = 'pin-container/pin-container/DELETE_PIN';

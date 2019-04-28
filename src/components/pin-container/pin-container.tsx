@@ -1,7 +1,8 @@
 import * as React from "react";
-import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 import { connect } from 'react-redux';
-import { TiDelete } from 'react-icons/ti';
+
+import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
+import PinIssue from '../pin-issue/pin-issue'; 
 
 interface PinContainerProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -17,9 +18,8 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
   pinIssues = () => {
     if (this.props.pin.length>0){
     return this.props.pin.map(issue => (
-      <li className="pin-issue" key={issue.id}>{issue.issue}<TiDelete 
-      // onClick={()=>this.props.moveFromPin(this)}
-      /></li>
+      <PinIssue key={issue.id} issue ={issue.issue}/>
+     
     ))
     }else{
       return  "You wanna pin something?"
