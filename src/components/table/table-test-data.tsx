@@ -24,18 +24,7 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
     };
 
     moveCard(data: any, newList: any) {
-        for (let i in this.state.data) {
-            if (i == data.oldlistId) {
-                let filteredData = this.state.data[i].filter((j?: any) => j.id !== data.cardId)
-                let state = this.state;
-                state.data[i] = filteredData
-                this.setState({ state: state });
-            }
-        }
-
-        let state = this.state;
-        state.data[newList].push(this.getIssue(data.cardId));
-        this.setState({ state: state });
+ 
     }
     getIssue = (id: any) => {
         for (let i of this.state.allIssues) {
@@ -48,26 +37,24 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
         e.preventDefault();
     }
     onDrop = (e: any) => {
+        console.log('df');
         const newList = e.currentTarget.id;
+        console.log(newList);
         e.preventDefault();
         const data = JSON.parse(e.dataTransfer.getData("text"));
-        this.moveCard(data, newList);
+        console.log(data);
+        // this.moveCard(data, newList);
     }
     onDragCard = (e: any) => {
         const data = {
             cardId: e.currentTarget.id,
             oldlistId: e.currentTarget.parentElement.id
         }
+        console.log(data);
         e.dataTransfer.setData('text', JSON.stringify(data));
-    }
-    getContainers = (data: any) => {
-        return data.map((i?: any) =>
-            <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
-        )
     }
     getIssues =(status?:string)=>{
         const issues = this.state.data.filter(item => item.status == status);
-        console.log(issues);
         return issues.map((i?: any)=> 
         <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
         )
@@ -86,23 +73,23 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
                     <h3>In progress</h3>
                     {this.getIssues('In progress')}
                 </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'urgent'}>
+                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'stalled'}>
                     <h3>
                         Stalled</h3>
                         {this.getIssues('Stalled')}
                 </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'urgent'}>
+                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'internal-review'}>
                     <h3>
                         Internal review</h3>
                         {this.getIssues('Internal review')}
                 </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'} >
+                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'client-review'} >
                     <h3>
                         Client review
                     </h3>
                     {this.getIssues('Client review')}
                 </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'} >
+                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'closed'} >
                     <h3>
                         Closed
                     </h3>

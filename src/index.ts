@@ -76,7 +76,7 @@ function renderIssues(data: any) {
   console.log(data);
   const issue = issuesData.getIssues();
   mainWindow.send('issue', issue);
-  console.log('yyyy:'+ JSON.stringify(issue) );
+  
 }
 ipcMain.on('jira', (event: any, user: any) => {
   getBoard(user.name, user.password, rend);
