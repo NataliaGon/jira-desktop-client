@@ -22,20 +22,21 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
             { issue: 'site1', id: '5', priority: 'high', status: 'Internal review', duedate: '2018-10-27', created: '2019-02-03T12:03:15.000+0000' },
             { issue: 'site2', id: '6', priority: 'low', status: 'Client review', duedate: '2019-12-25', created: '2018-04-03T12:03:15.000+0000' },
             { issue: 'site1', id: '7', priority: 'high', status: 'Open', duedate: '2017-12-30', created: '2019-02-03T12:05:55.000+0000' }
-        ]
+        ],
+        status: ['In progress', 'Open', 'Closed', 'Stalled', 'Internal review', 'Client review']
     };
 
     moveCard(data: any, newList: any) {
         for (let i in this.state.data) {
-            if(this.state.data[i].id == data.cardId){
+            if (this.state.data[i].id == data.cardId) {
                 let state = this.state.data;
-                state[i].status=newList;
-                this.setState({data:state});
+                state[i].status = newList;
+                this.setState({ data: state });
                 // this.forceUpdate()
                 // this.setState({data:update(this.state.data, {i:{status:{$set:newList}}})});
             }
         }
-    
+
     }
     getIssue = (id: any) => {
         for (let i of this.state.allIssues) {
@@ -60,48 +61,26 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
         }
         e.dataTransfer.setData('text', JSON.stringify(data));
     }
-    getIssues =(status?:string)=>{
+    getIssues = (status?: string) => {
         const issues = this.state.data.filter(item => item.status == status);
-        return issues.map((i?: any)=> 
-        <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
+        return issues.map((i?: any) =>
+            <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
         )
-    } 
+    }
+    mainRender = () => {
+        return this.state.status.map((item?: any) =>
+            <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
+                <h3>{item}</h3>
+                {this.getIssues(item)}
 
+            </div>
+        )
+
+    }
     public render() {
-
         return (
             <div className="table">
-                <div className="droppable-container" onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'Open'}>
-                    <h3>Open</h3>
-                    {this.getIssues('Open')}
-
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'In progress'}>
-                    <h3>In progress</h3>
-                    {this.getIssues('In progress')}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'Stalled'}>
-                    <h3>
-                        Stalled</h3>
-                        {this.getIssues('Stalled')}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'Internal review'}>
-                    <h3>
-                        Internal review</h3>
-                        {this.getIssues('Internal review')}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'Client review'} >
-                    <h3>
-                        Client review
-                    </h3>
-                    {this.getIssues('Client review')}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'Closed'} >
-                    <h3>
-                        Closed
-                    </h3>
-                    {this.getIssues('Closed')}
-                </div>
+            {this.mainRender()}
             </div>
 
         )
