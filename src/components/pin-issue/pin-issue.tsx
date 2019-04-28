@@ -14,8 +14,8 @@ interface PinIssueState extends ComponentBaseState {
 class PinIssue extends ComponentBase<PinIssueProperties, PinIssueState>{
     public render() {
         return (
-            <li className="pin-issue" >{this.props.issue}<TiDelete 
-            onClick={()=>this.props.deletePin(this)}
+            <li className="pin-issue" >{this.props.issue.issue}<TiDelete 
+            onClick={()=>this.props.deletePin(this.props.issue.id)}
             /></li>
         )
       }

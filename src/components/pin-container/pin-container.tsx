@@ -18,7 +18,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
   pinIssues = () => {
     if (this.props.pin.length>0){
     return this.props.pin.map(issue => (
-      <PinIssue key={issue.id} issue ={issue.issue}/>
+      <PinIssue key={issue.id} issue ={issue}/>
      
     ))
     }else{
