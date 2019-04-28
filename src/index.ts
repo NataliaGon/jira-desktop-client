@@ -3,14 +3,15 @@ import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS  } from 'electr
 import { enableLiveReload } from 'electron-compile';
 const getBoard = require('./domain/data-providers/board-api');
 const getUserProfile = require('./domain/data-providers/user-api');
-const getUserProject = require('./domain/data-providers/project-api');
+const getUserIssues = require('./domain/data-providers/project-api');
 const dataLocal = require('./domain/data-providers/local.js');
 const ProjectsStore = require('./data/projects-store.js')
 const UserStore = require('./data/user-store.js')
-
+const IssuesStore = require('./data/issues-store.js')
 
 const projectsData = new ProjectsStore({ name: 'Projects Main' });
 const userData = new UserStore({ name: 'User Main' })
+const issuesData = new IssuesStore({ name: 'User Main' })
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow | null = null;
@@ -70,13 +71,17 @@ function rend(data: any, user) {
 function renderUser(data: any) {
   mainWindow.send('user', data);
 }
-function renderProject(data: any) {
-  mainWindow.send('projects', data);
+function renderIssues(data: any) {
+  issuesData.addIssues(data)
+  console.log(data);
+  const issue = issuesData.getIssues();
+  mainWindow.send('issue', issue);
+  console.log('yyyy:'+ JSON.stringify(issue) );
 }
 ipcMain.on('jira', (event: any, user: any) => {
   getBoard(user.name, user.password, rend);
   getUserProfile(user.name, user.password, renderUser);
-  getUserProject(user.name, user.password, renderProject);
+  getUserIssues(user.name, user.password, renderIssues);
 })
 
 ipcMain.on('check-user', () => {
@@ -85,6 +90,6 @@ ipcMain.on('check-user', () => {
     mainWindow.send('login', true);
     getBoard(user.name, user.password, rend);
     getUserProfile(user.name, user.password, renderUser);
-    getUserProject(user.name, user.password, renderProject);
+    getUserIssues(user.name, user.password, renderIssues);
   }
 })

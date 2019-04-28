@@ -2,7 +2,7 @@ const jiraFunction = require('../autorization/user');
 const request = require('request');
 const Buffer = require('buffer/').Buffer
 
-function getProject(name, password, callback) {
+function getIssues(name, password, callback) {
     const jira = jiraFunction(name, password)
     jira.issue.getIssue({
         issueKey: 'PRND-15'
@@ -10,7 +10,7 @@ function getProject(name, password, callback) {
        function (error, issues) {
             if (error) { `error in getting issues:${console.log(error)}` }
             callback(issues)
-            console.log('this is:' + issues);
+
         }
     )
 //    const passw= Buffer.from(`${name}:${password}`).toString('base64');
@@ -26,4 +26,4 @@ function getProject(name, password, callback) {
 //       });
 
 }
-module.exports = getProject;
+module.exports = getIssues;

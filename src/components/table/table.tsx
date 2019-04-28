@@ -14,11 +14,11 @@ export class Table extends ComponentBase<TableProperties, TableState>{
     state = {
         data: {
             open: [
-                { issue: 'img', id: '1', idC: 'open' },
-                { issue: 'animation', id: '2', idC: 'open' }
+                { issue: 'img', id: '1', idC: 'open', priority:'Regular', status: 'in progress', duedate:'2018-12-30', created: '2019-01-03T12:03:15.000+0000' },
+                { issue: 'animation', id: '2', idC: 'open', priority:'Urgent', status: 'in progress', duedate:'2019-01-30', created: '2019-01-04T12:03:15.000+0000' }
             ],
             inProgress: [
-                { issue: 'react', id: '3', idC: 'inProgress' },
+                { issue: 'react', id: '3', idC: 'inProgress',  },
                 { issue: 'electron', id: '4', idC: 'inProgress' }
             ],
             close: [
