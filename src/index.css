@@ -45,7 +45,7 @@ form{
 }
 .droppable-container{
   flex: 0 0 16.66%;
-  height: 100%;
+  height: 100vh;
   padding: 15px;
   box-sizing: border-box;
 }

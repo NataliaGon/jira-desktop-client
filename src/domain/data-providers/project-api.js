@@ -1,6 +1,5 @@
 const jiraFunction = require('../autorization/user');
-const request = require('request');
-const Buffer = require('buffer/').Buffer
+
 
 function getIssues(name, password, callback) {
     const jira = jiraFunction(name, password)

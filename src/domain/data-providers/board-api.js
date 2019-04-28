@@ -9,13 +9,11 @@ function getJira(name, password, callback) {
             if (error){
                 console.log('no response from jira' + error); 
             }else{ 
-                //to do save user
                 const user={
                     name:name,
                     password:password
                 }
                 callback(boards, user)
-                console.log(boards);
             }
             
         }

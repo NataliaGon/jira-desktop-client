@@ -21,7 +21,7 @@ export class App extends React.Component<undefined, undefined> {
           <User />
         </div>
         <Boards />
-        <TableD />
+        <TableD/>
         <PinContainer/> 
       </div>
     );

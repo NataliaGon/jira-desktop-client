@@ -57,6 +57,7 @@
     "electron-store": "^3.2.0",
     "jira-connector": "^2.10.0",
     "react": "^16.8.6",
+    "react-addons-update": "^15.6.2",
     "react-dnd": "^7.4.5",
     "react-dnd-html5-backend": "^7.4.4",
     "react-dom": "^16.8.6",
