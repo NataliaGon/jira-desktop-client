@@ -1,6 +1,5 @@
 import * as React from "react";
-
-const { ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron');
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 
 

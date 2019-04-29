@@ -73,10 +73,10 @@ function renderUser(data: any) {
   mainWindow.send('user', data);
 }
 function renderIssues(data: any, boardName:string) {
-  const issues= new storeElectron.issuesStore({ name: `issues-${boardName}`});
-  issues.addIssues(data)
-  const issue = issuesData.getIssues();
-  mainWindow.send('issue', issue);
+  const issuesData= new storeElectron.issuesStore({ name:`issues-${boardName}`});
+  issuesData.addIssues(data)
+  const issues = issuesData.getIssues();
+  mainWindow.send('issues', issues);
   
 }
 ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
