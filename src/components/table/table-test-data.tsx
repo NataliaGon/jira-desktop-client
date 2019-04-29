@@ -29,11 +29,7 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
     moveCard(data: any, newList: any) {
         for (let i in this.state.data) {
             if (this.state.data[i].id == data.cardId) {
-                let state = this.state.data;
-                state[i].status = newList;
-                this.setState({ data: state });
-                // this.forceUpdate()
-                // this.setState({data:update(this.state.data, {i:{status:{$set:newList}}})});
+                 this.setState({data: update(this.state.data, {[i]:{status:{$set:newList}}})});
             }
         }
 
@@ -72,7 +68,6 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
                 <h3>{item}</h3>
                 {this.getIssues(item)}
-
             </div>
         )
 
