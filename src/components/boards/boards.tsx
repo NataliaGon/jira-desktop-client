@@ -22,11 +22,15 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
         })
 
     }
+    
+    getIssues(boardId:number, boardName:string){
+        ipcRenderer.send('getIssues', boardId, boardName)
+    }
 
     boardsList = () => {
         if (this.state.boards.length > 0) {
             return this.state.boards.map(i =>
-                <li className="list-board" key={i.id}>{i.name}</li>
+                <li className="list-board" key={i.id} onClick={()=>this.getIssues(i.id, i.name)}>{i.name}</li>
             )
         }
     }

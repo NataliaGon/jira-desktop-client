@@ -20,6 +20,7 @@ form{
     display: inline;
     list-style: none;
     margin-left: 15px;
+    cursor: pointer;
 }
 .list-board:first-child{
     margin-left: unset;

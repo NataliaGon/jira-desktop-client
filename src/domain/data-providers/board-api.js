@@ -1,13 +1,13 @@
 const jiraFunction = require('../autorization/user');
 
-function getJira(name, password, callback) {
+function getBoard(name, password, callback) {
 
     const jira = jiraFunction(name, password)
     jira.board.getAllBoards(
         {},
         (error, boards) => {
             if (error){
-                console.log('no response from jira' + error); 
+                console.log('no response from jira boards' + error); 
             }else{ 
                 const user={
                     name:name,
@@ -19,4 +19,4 @@ function getJira(name, password, callback) {
         }
     )
 }	
-module.exports= getJira;
+module.exports= getBoard;

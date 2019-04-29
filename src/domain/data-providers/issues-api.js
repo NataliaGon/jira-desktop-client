@@ -1,15 +1,15 @@
 const jiraFunction = require('../autorization/user');
 
 
-function getIssues(name, password, callback) {
+function getIssues(name, password, callback, boardId, boardName) {
     const jira = jiraFunction(name, password)
     jira.board.getIssuesForBoard({
-        boardId: 15,
+        boardId: boardId,
         fields: [] 
     },
        function (error, issues) {
             if (error) { `error in getting issues:${console.log(error)}` }
-            callback(issues)
+            callback(issues, boardName)
         }
     )
 }

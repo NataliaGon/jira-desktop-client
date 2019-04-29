@@ -2,9 +2,7 @@ import * as React from 'react';
 
 import { Boards } from './components/boards/boards';
 import { User } from './components/user/user';
-// import { Table } from './components/table/table';
 import { FormAutor } from './components/authorization/authorization';
-// import { TableR } from './components/table/table-react-dnd';
 import { TableD } from './components/table/table-test-data';
 import PinContainer from './components/pin-container/pin-container';
 

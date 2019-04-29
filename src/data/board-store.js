@@ -2,7 +2,7 @@
 
 const Store = require('electron-store')
 
-class ProjectsStore extends Store {
+class boardsStore  extends Store {
   constructor (settings) {
     super(settings)
     this.projects= this.get('projects') || []
@@ -30,4 +30,4 @@ class ProjectsStore extends Store {
 
 }
 
-module.exports = ProjectsStore 
+module.exports = boardsStore 
