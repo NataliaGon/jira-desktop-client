@@ -1,7 +1,7 @@
 import * as React from "react";
-import Draggable from '../draggable-box/draggable-box';
+import Draggable from '../issue/issue';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
-// import update from 'react-addons-update';
+
 var update = require('react-addons-update');
 
 

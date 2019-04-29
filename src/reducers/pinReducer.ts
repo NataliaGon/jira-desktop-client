@@ -1,4 +1,4 @@
-import {TO_PIN} from "../components/draggable-box/issue.constants";
+import {TO_PIN} from "../components/issue/issue.constants";
 import {DELETE_PIN} from "../components/pin-issue/pin-issue.constants";
 
 const initialState = {

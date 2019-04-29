@@ -19,7 +19,6 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
         ipcRenderer.on('boards', (event: any, boards: any) => {
             this.setState({ boards: boards.values })
         })
-
     }
     
     getIssues(boardId:number, boardName:string){
@@ -35,9 +34,7 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
     }
 
     public render() {
-
         const boardsHTML = this.boardsList();
-
         return (
             <ul className="container-boards" >
                 <li className="list-board title">Boards</li>

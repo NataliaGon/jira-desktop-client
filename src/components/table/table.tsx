@@ -1,64 +1,38 @@
 import * as React from "react";
-import Draggable  from '../draggable-box/draggable-box';
+import Draggable from '../issue/issue';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
+const { ipcRenderer } = require('electron');
+var update = require('react-addons-update');
 
 
-interface TableProperties extends ComponentBaseProperties {
+interface TableDProperties extends ComponentBaseProperties {
 
 }
-interface TableState extends ComponentBaseState {
+interface TableDState extends ComponentBaseState {
 
 }
 
-export class Table extends ComponentBase<TableProperties, TableState>{
+export class TableD extends ComponentBase<TableDProperties, TableDState>{
     state = {
-        data: {
-            open: [
-                { issue: 'img', id: '1', idC: 'open', priority:'Regular', status: 'in progress', duedate:'2018-12-30', created: '2019-01-03T12:03:15.000+0000' },
-                { issue: 'animation', id: '2', idC: 'open', priority:'Urgent', status: 'in progress', duedate:'2019-01-30', created: '2019-01-04T12:03:15.000+0000' }
-            ],
-            inProgress: [
-                { issue: 'react', id: '3', idC: 'inProgress',  },
-                { issue: 'electron', id: '4', idC: 'inProgress' }
-            ],
-            close: [
-                { issue: 'site1', id: '5', idC: 'close' },
-                { issue: 'site2', id: '6', idC: 'close' }
-            ],
-            urgent: [
-                { issue: 'site1', id: '7', idC: 'urgent' },
-                { issue: 'site2', id: '8', idC: 'urgent' }
-            ]
-        }
-        allIssues: [
-            { issue: 'img', id: '1', idC: 'open' },
-            { issue: 'animation', id: '2', idC: 'open' },
-            { issue: 'react', id: '3', idC: 'inProgress' },
-            { issue: 'electron', id: '4', idC: 'inProgress' },
-            { issue: 'site1', id: '5', idC: 'close' },
-            { issue: 'site2', id: '6', idC: 'close' },
-            { issue: 'site1', id: '7', idC: 'urgent' },
-            { issue: 'site2', id: '8', idC: 'urgent' }
-        ]
+        status: ['In progress', 'Open', 'Closed', 'Stalled', 'Internal review', 'Client review']
     };
 
+    componentDidMount() {
+        ipcRenderer.on('issues', (event: any, data: any) => {
+            this.setState({ issues: data })
+        })
+    }
     moveCard(data: any, newList: any) {
         for (let i in this.state.data) {
-            if (i == data.oldlistId) {
-                let filteredData = this.state.data[i].filter((j?: any) => j.id !== data.cardId)
-                let state = this.state;
-                state.data[i] = filteredData
-                this.setState({ state: state });
+            if (this.state.data[i].id == data.cardId) {
+                this.setState({ data: update(this.state.data, { [i]: { status: { $set: newList } } }) });
             }
         }
- 
-        let state = this.state;
-        state.data[newList].push(this.getIssue(data.cardId));
-        this.setState({ state: state });
+
     }
-    getIssue =(id:any)=> {
+    getIssue = (id: any) => {
         for (let i of this.state.allIssues) {
-            if (i.id == id) {  
+            if (i.id == id) {
                 return i
             }
         }
@@ -79,37 +53,30 @@ export class Table extends ComponentBase<TableProperties, TableState>{
         }
         e.dataTransfer.setData('text', JSON.stringify(data));
     }
-    getContainers = (data: any) => {
-        return data.map((i: any) =>
-            <Draggable  DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.issue}></Draggable >
+    getIssues = (status?: string) => {
+        if (this.state.issues) {
+            const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name==status);
+            return issues.map((i?: any) =>
+            <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.key}></Draggable >
         )
+        }
+    }
+    mainRender = () => {
+        return this.state.status.map((item?: any) =>
+            <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
+                <h3>{item}</h3>
+                {this.getIssues(item)}
+            </div>
+        )
+
     }
 
     public render() {
-
         return (
             <div className="table">
-                <div className="droppable-container" onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'open'}>
-                    <h3>open</h3>
-                    {this.getContainers(this.state.data.open)}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'inProgress'}>
-                    <h3>in progress</h3>
-                    {this.getContainers(this.state.data.inProgress)}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'urgent'}>
-                    <h3>
-                        internal review</h3>
-                    {this.getContainers(this.state.data.urgent)}
-                </div>
-                <div className="droppable-container" onDragOver={(e) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={'close'} >
-                    <h3>
-                        close
-                    </h3>
-                    {this.getContainers(this.state.data.close)}
-                </div>
+                {this.mainRender()}
             </div>
-         
+
         )
     }
 }
