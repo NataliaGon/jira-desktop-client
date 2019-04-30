@@ -1,5 +1,6 @@
 import * as React from "react";
 import Draggable from '../issue/issue';
+import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 const { ipcRenderer } = require('electron');
 var update = require('react-addons-update');
@@ -12,7 +13,7 @@ interface TableState extends ComponentBaseState {
 
 }
 
-export class Table extends ComponentBase<TableProperties, TableState>{
+class Table extends ComponentBase<TableProperties, TableState>{
     state = {
         status: ['In progress', 'Open', 'Closed', 'Stalled', 'Internal review', 'Client review']
     };
@@ -23,13 +24,13 @@ export class Table extends ComponentBase<TableProperties, TableState>{
         })
     }
     moveCard(data: any, newList: any) {
-        for (let i in this.state.issues.issues[0].issues){
-            if ( this.state.issues.issues[0].issues[i].id == data.cardId){
+        for (let i in this.state.issues.issues[0].issues) {
+            if (this.state.issues.issues[0].issues[i].id == data.cardId) {
                 const state = this.state.issues;
                 state.issues[0].issues[i].fields.status.name = newList;
-                this.setState({issues:state});
+                this.setState({ issues: state });
                 // this.setState({ issues: update(this.state.issues.issues[0].issues, { [i]:{fields:{status:{name: { $set: newList }}}}})});
-            } 
+            }
         }
 
     }
@@ -57,11 +58,13 @@ export class Table extends ComponentBase<TableProperties, TableState>{
         e.dataTransfer.setData('text', JSON.stringify(data));
     }
     getIssues = (status?: string) => {
+        this.handleFilter(this.props.filter)
+        console.log(this.state.issues);
         if (this.state.issues) {
-            const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name==status);
+            const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name == status);
             return issues.map((i?: any) =>
-            <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.key}></Draggable >
-        )
+                <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.key} dueDate={i.fields.duedate} creator={i.fields.creator.displayName}></Draggable >
+            )
         }
     }
     mainRender = () => {
@@ -73,6 +76,16 @@ export class Table extends ComponentBase<TableProperties, TableState>{
         )
 
     }
+    handleFilter = (field: any, option) => {
+        switch (field) {
+            case 'Dute date':
+           if(this.state.issues){
+            console.log(this.state.issues.issues[0].issues[0].fields.duedate);
+           }         
+            default:
+                break;
+        }
+    }
 
     public render() {
         return (
@@ -83,3 +96,16 @@ export class Table extends ComponentBase<TableProperties, TableState>{
         )
     }
 }
+function mapStateToProps(store: any) {
+    if (store.filterOption) {
+        return {
+            filter: store.filterOption.filter
+        };
+    } else {
+        return { filter: '' }
+    }
+}
+export default connect(
+    mapStateToProps,
+    null
+)(Table);

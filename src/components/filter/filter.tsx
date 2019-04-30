@@ -33,7 +33,7 @@ interface FiltersState extends ComponentBaseState {
                     <ul className="filter-options">
                         <li className="filter-opions-list" onClick={() => this.props.filter('Priority')}>Priority</li>
                         <li className="filter-opions-list" onClick={() => this.props.filter('Dute date')}>Dute date</li>
-                        <li className="filter-opions-list" onClick={() => this.props.filter('Created')}>Created</li>
+                        <li className="filter-opions-list" onClick={() => this.props.filter('Creator')}>Creator</li>
                     </ul>
                 </div>
             )

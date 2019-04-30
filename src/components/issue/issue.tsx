@@ -2,7 +2,7 @@ import * as React from 'react';
 import { GoPin } from 'react-icons/go';
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
-import {toPin} from './issue.actions';
+import { toPin } from './issue.actions';
 
 interface DraggableProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -10,12 +10,12 @@ interface DraggableProperties extends ComponentBaseProperties {
   id?: any
 }
 interface DraggableState extends ComponentBaseState {
-  pin?:boolean
+  pin?: boolean
 }
 
- class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
+class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
   state = {
-     pin:false
+    pin: false
   }
 
 
@@ -24,7 +24,11 @@ interface DraggableState extends ComponentBaseState {
     return (
       <div className="draggable-box" draggable onDragStart={(e: any) => this.props.DragCard(e)} id={this.props.id}>
         {this.props.issue}
-        <div className="pin-icon-wrapper" onClick={()=>this.props.toPin(this)}><GoPin /></div>
+        <div className="due-date">
+          <span className="bold">due date </span>{this.props.dueDate}</div>
+          <div className="issue-creator">
+          {this.props.creator}</div>
+        <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this)}><GoPin /></div>
       </div>
 
     )
@@ -32,13 +36,13 @@ interface DraggableState extends ComponentBaseState {
 
 }
 
-function mapStateToProps(store:any) {
+function mapStateToProps(store: any) {
   return {
-    store:store.pin
+    store: store.pin
   };
 }
 
 export default connect(
   mapStateToProps,
-  {toPin}
+  { toPin }
 )(Draggable);
