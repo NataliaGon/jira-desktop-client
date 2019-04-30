@@ -29,7 +29,7 @@ export class Form extends ComponentBase<FormProperties, FormState>{
         (this.state.name.length > 0 && this.state.password.length > 0) ? this.sendUser() : console.log('no')
     }
     handleCansel = ()=>{
-        console.log('cansel');
+   
     }
     sendUser = () => {
         const user = {

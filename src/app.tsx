@@ -5,7 +5,8 @@ import { User } from './components/user/user';
 import { FormAutor } from './components/authorization/authorization';
 import { Table } from './components/table/table';
 import PinContainer from './components/pin-container/pin-container';
-import { Search } from './components/search/search'
+import { Search } from './components/search/search';
+import Filters from './components/filter/filter';
 
 export class App extends React.Component<undefined, undefined> {
 
@@ -24,6 +25,7 @@ export class App extends React.Component<undefined, undefined> {
         </header>
         <main>
           <Boards />
+          <Filters/>
           <Table />
           <PinContainer />
         </main>

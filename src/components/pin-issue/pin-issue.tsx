@@ -24,13 +24,9 @@ class PinIssue extends ComponentBase<PinIssueProperties, PinIssueState>{
       }
     }
     
-    function mapStateToProps(store: any) {
-      return {
-       
-      };
-    }
+   
     
     export default connect(
-      mapStateToProps,
+      null,
       {deletePin}
     )(PinIssue);

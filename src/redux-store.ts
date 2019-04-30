@@ -1,9 +1,10 @@
-import {createStore, combineReducers } from "redux";
-import pinReducer from "./reducers/pinReducer";
-
+import {createStore, combineReducers } from 'redux';
+import pinReducer from './reducers/pin';
+import filterReducer from './reducers/filter'
 
 const reducer = combineReducers({
-    pin: pinReducer
+    pin: pinReducer,
+    filterOption: filterReducer
 })
 
 export default createStore(

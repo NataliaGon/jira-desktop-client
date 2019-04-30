@@ -137,3 +137,34 @@ input{
     padding: 0 5px;
     background-color: white;
 }
+
+/* Filter */
+.filters-component{
+    margin-top: 15px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.filter-container{
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+}
+.filter-btn{
+    color: white;
+    border: 1px solid white;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size:18px;
+    background-color: lightgray;
+}
+.filter-options{
+    margin-left: 30px; 
+}
+.filter-opions-list{
+    padding:  2.5px 5px;
+    box-shadow: 1px 1px 5px grey;
+    cursor: pointer;
+}
