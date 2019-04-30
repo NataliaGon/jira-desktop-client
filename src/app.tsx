@@ -3,8 +3,9 @@ import * as React from 'react';
 import { Boards } from './components/boards/boards';
 import { User } from './components/user/user';
 import { FormAutor } from './components/authorization/authorization';
-import { TableD} from './components/table/table';
+import { Table} from './components/table/table';
 import PinContainer from './components/pin-container/pin-container';
+import {Search} from './components/search/search'
 
 export class App extends React.Component<undefined, undefined> {
 
@@ -16,10 +17,11 @@ export class App extends React.Component<undefined, undefined> {
         <h1>Jira userfriendly system</h1>
         <div className="flex">
           <FormAutor />
+          <Search/>
           <User />
         </div>
         <Boards />
-        <TableD/>
+        <Table/>
         <PinContainer/> 
       </div>
     );

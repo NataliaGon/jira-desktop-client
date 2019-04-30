@@ -5,14 +5,14 @@ const { ipcRenderer } = require('electron');
 var update = require('react-addons-update');
 
 
-interface TableDProperties extends ComponentBaseProperties {
+interface TableProperties extends ComponentBaseProperties {
 
 }
-interface TableDState extends ComponentBaseState {
+interface TableState extends ComponentBaseState {
 
 }
 
-export class TableD extends ComponentBase<TableDProperties, TableDState>{
+export class Table extends ComponentBase<TableProperties, TableState>{
     state = {
         status: ['In progress', 'Open', 'Closed', 'Stalled', 'Internal review', 'Client review']
     };

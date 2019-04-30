@@ -50,7 +50,6 @@ form{
 }
 .droppable-container{
   flex: 0 0 16.66%;
-  height: 100vh;
   padding: 15px;
   box-sizing: border-box;
 }
@@ -75,12 +74,12 @@ form{
     position: fixed;
     bottom:15px;
     right:45px;
-    width: 100px;
+    width: auto;
     height: auto;
     padding: 25px;
     background-color: greenyellow;
-    border-radius: 5%;
-    color: dimgray;
+    border-radius: 5px;
+    color: rgb(10, 10, 10);
 }
 .pin-container-icon{
     position: fixed;
@@ -98,7 +97,10 @@ form{
     top: 5px;
     right: 5px;
     cursor: pointer;
-    color: dimgray;;
+    color: rgb(10, 10, 10);
+}
+.icon-delete-pin{
+    margin-left: 5px;
 }
 .pin-icon-wrapper{
     position: absolute;
@@ -108,4 +110,17 @@ form{
 
 .pin-issue{
     list-style-type: none;
+}
+
+/* Search */
+input{
+    border: none;
+}
+.search-container{
+    height: 20px;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 0 5px;
 }

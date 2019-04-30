@@ -79,6 +79,10 @@ function renderIssues(data: any, boardName:string) {
   mainWindow.send('issues', issues);
   
 }
+function showResalts(data){
+  mainWindow.send('searchResults', data);
+}
+
 ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
   const user = userData.getUser().users[0];
   apiProvider.getIssues(user.name, user.password, renderIssues, boardId, boardName);
@@ -88,7 +92,6 @@ ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
 ipcMain.on('jira', (event: any, user: any) => {
   apiProvider.getBoard(user.name, user.password, handleDataBoards);
   apiProvider.getUserProfile(user.name, user.password, renderUser);
-  // apiProvider.getIssues(user.name, user.password, renderIssues);
 })
 
 
@@ -98,6 +101,10 @@ ipcMain.on('check-user', () => {
     mainWindow.send('login', true);
     apiProvider.getBoard(user.name, user.password, handleDataBoards);
     apiProvider.getUserProfile(user.name, user.password, renderUser);
-    // apiProvider.getIssues(user.name, user.password, renderIssues);
   }
+})
+
+ipcMain.on('search', (event: any, search: string)=>{
+  const user = userData.getUser().users[0];
+  apiProvider.search(user.name, user.password, search, showResalts);
 })
