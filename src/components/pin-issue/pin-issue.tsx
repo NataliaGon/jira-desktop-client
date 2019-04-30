@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from 'react-redux';
-import { TiDelete } from 'react-icons/ti';
+import { FaTrashAlt } from 'react-icons/fa';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 import {deletePin} from './pin-issue.actions'
 
@@ -14,7 +14,7 @@ interface PinIssueState extends ComponentBaseState {
 class PinIssue extends ComponentBase<PinIssueProperties, PinIssueState>{
     public render() {
         return (
-            <li className="pin-issue" >{this.props.issue.issue}<TiDelete 
+            <li className="pin-issue" >{this.props.issue.issue}<FaTrashAlt
             onClick={()=>this.props.deletePin(this.props.issue.id)}
             /></li>
         )

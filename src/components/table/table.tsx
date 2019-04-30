@@ -23,10 +23,17 @@ export class TableD extends ComponentBase<TableDProperties, TableDState>{
         })
     }
     moveCard(data: any, newList: any) {
-        for (let i in this.state.data) {
-            if (this.state.data[i].id == data.cardId) {
-                this.setState({ data: update(this.state.data, { [i]: { status: { $set: newList } } }) });
-            }
+        // for (let i in this.state.data) {
+        //     if (this.state.data[i].id == data.cardId) {
+        //         this.setState({ data: update(this.state.data, { [i]: { status: { $set: newList } } }) });
+        //     }
+        // }
+        for (let i in this.state.issues.issues[0].issues){
+            console.log(i);
+            if ( this.state.issues.issues[0].issues[i].id == data.cardId){
+                console.log(i.fields.status.name);
+                this.setState({ issues: update(this.state.issues.issues[0].issues, { [i]:{fields:{status:{name: { $set: newList }}}}})});
+            } 
         }
 
     }

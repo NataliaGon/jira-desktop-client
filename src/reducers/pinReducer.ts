@@ -19,7 +19,9 @@ export default function pinReducer(state = initialState, action?:any) {
       }
      }
      case DELETE_PIN:
-     return state;
+     const issues = state.pin.filter(i=>i.id != action.data);
+     return {pin: issues}
+
     default:
       return state;
   }
