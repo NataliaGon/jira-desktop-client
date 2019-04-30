@@ -32,7 +32,7 @@ export class FormAutor extends ComponentBase<FormAutorProperties, FormAutorState
         {this.handleRender()}
     }
     handleRender = () => {
-    const html= (this.state.user) ?  <button onClick={this.changeUser}>changeUser</button> : <Form /> 
+    const html= (this.state.user) ?  <button className="btn-autorization" onClick={this.changeUser}>changeUser</button> : <Form /> 
     return html
     }
     

@@ -28,6 +28,9 @@ export class Form extends ComponentBase<FormProperties, FormState>{
         event.preventDefault();
         (this.state.name.length > 0 && this.state.password.length > 0) ? this.sendUser() : console.log('no')
     }
+    handleCansel = ()=>{
+        console.log('cansel');
+    }
     sendUser = () => {
         const user = {
             name: this.state.name,
@@ -44,8 +47,11 @@ export class Form extends ComponentBase<FormProperties, FormState>{
                     <input id="user-name" type="text" name="userName" onChange={this.handleChangeName} /><br /><br />
                     <label>Password</label><br />
                     <input id="password" type="text" name="userAge" onChange={this.handleChangePassw} /><br /><br />
-                    <button id="submit" type="submit" onClick={this.handleSubmit}>
+                    <button className="btn-autorization" id="submit" type="submit" onClick={this.handleSubmit}>
                         Get Jira
+                    </button>
+                    <button className="btn-autorization"  onClick={this.handleCansel()}>
+                        Cansel
                     </button>
                 </form>
             </div>

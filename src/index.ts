@@ -60,6 +60,8 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+const user = userData.getUser().users[0];
+
 
 function handleDataBoards(data: any, user:any) {
   mainWindow.send('boards', data);
@@ -84,7 +86,6 @@ function showResalts(data){
 }
 
 ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
-  const user = userData.getUser().users[0];
   apiProvider.getIssues(user.name, user.password, renderIssues, boardId, boardName);
 })
 
@@ -96,7 +97,6 @@ ipcMain.on('jira', (event: any, user: any) => {
 
 
 ipcMain.on('check-user', () => {
-  const user = userData.getUser().users[0];
   if (user) {
     mainWindow.send('login', true);
     apiProvider.getBoard(user.name, user.password, handleDataBoards);
@@ -105,6 +105,8 @@ ipcMain.on('check-user', () => {
 })
 
 ipcMain.on('search', (event: any, search: string)=>{
-  const user = userData.getUser().users[0];
-  apiProvider.search(user.name, user.password, search, showResalts);
+ let option ={}
+  option.number=20;
+  option.jql=search;
+  apiProvider.search(user.name, user.password, option, showResalts);
 })

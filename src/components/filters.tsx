@@ -3,14 +3,14 @@ import { FaSearch } from 'react-icons/fa';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 const { ipcRenderer } = require('electron');
 
-interface SearchProperties extends ComponentBaseProperties {
+interface FiltersProperties extends ComponentBaseProperties {
 
 }
-interface SearchState extends ComponentBaseState {
+interface FiltersState extends ComponentBaseState {
 
 }
 
-export class Search extends ComponentBase<SearchProperties, SearchState>{
+export class Filters extends ComponentBase<FiltersProperties, FiltersState>{
     state = {
         input: ''
     }

@@ -1,8 +1,7 @@
 const jiraFunction = require('../autorization/user');
 
-
 function search(name, password, search, callback) {
-    const jira = jiraFunction(name, password)
+    const jira = jiraFunction(name, password);
     jira.search.search({
         search
     },

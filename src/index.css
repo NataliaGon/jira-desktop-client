@@ -1,17 +1,28 @@
 body{
     overflow: scroll!important;
+    padding: 0!important;
+
+}
+header{
+    background-color: lightgray;;
+    padding: 30px;
+}
+main{
+    padding: 30px;
 }
 h1{
     color: brown;
     font-size: 48px
 }
-button{
-    color: rgb(125, 211, 226);
-    border: 1px solid rgb(125, 211, 226);
+.btn-autorization{
+    color: white;
+    border: 1px solid white;
+    font-weight: bold;
     padding: 5px 15px;
     border-radius: 5px;
     font-size:22px;
     margin-top: 15px;
+    background-color: lightgray;
 }
 form{
     color: brown;
@@ -91,6 +102,7 @@ form{
     width: 1.5em;
     height: 1.5em; 
     cursor: pointer;
+    opacity: 0.4;
 }
 .icon-close{
     position: absolute;
@@ -123,4 +135,5 @@ input{
     align-items: center;
     border-radius: 5px;
     padding: 0 5px;
+    background-color: white;
 }
