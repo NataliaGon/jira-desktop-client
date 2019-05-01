@@ -188,7 +188,10 @@ input{
 
 /* Edit issue */
 .edit-issue{
-    position:absolute;
-    top:20px;
-    left:20px;
+    position: absolute;
+    top: 20px;
+    left: 5vw;
+    width: 90vw;
+    background: beige;
+    height: auto;
 }

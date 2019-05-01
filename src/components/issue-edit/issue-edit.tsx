@@ -20,9 +20,18 @@ export class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState
 
 
   public render() {
-
+ console.log(this.props);
     return (
       <div className="edit-issue"  id={this.props.issue.id}>
+      <h5>{this.props.issue.project}</h5>
+      <h5>{this.props.issue.creator}</h5>
+      <h5>{this.props.issue.projectKey}</h5>
+      <h5>{this.props.issue.epicName}</h5>
+      <h5>{this.props.issue.epicLink}</h5>
+      <h5>{this.props.issue.priority}</h5>
+      <h5>{this.props.issue.reporter}</h5>
+      <h5>{this.props.issue.assignee}</h5>
+      <h5>{this.props.issue.created}</h5>
         {this.props.issue.issue} <br/>
         {this.props.issue.title} 
         <div className="due-date">
@@ -33,10 +42,6 @@ export class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState
           </div>
         <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this)}><GoPin /></div>
       </div>
-    // <div className="edit-issue"  >
-    // hdtftyjfyjuyjy
-    // </div>
-
     )
   }
 

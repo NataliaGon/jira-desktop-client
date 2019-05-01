@@ -38,8 +38,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
         classes = classNames({
           'pin-icon':true
         })
-      }
-      
+      } 
       return <div className={classes}><GoPin onClick={() => this.openPin()} /></div>
     }
   }
@@ -48,6 +47,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
   }
   pinIssues = () => {
     if (this.props.pin.length > 0) {
+      console.log(this.props.pin);
       const issues = this.props.pin.map(issue => (
         <PinIssue key={issue.id} issue={issue} />
       ))
