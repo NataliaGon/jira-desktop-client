@@ -22,27 +22,41 @@ interface PinContainerState extends ComponentBaseState {
 class PinContainer extends ComponentBase<PinContainerProperties, PinContainerState>{
 
   state = {
-    open: false
+    open: false,
+    reRender: false
   }
-
+  componentWillUpdate(nextProps, nexState) {
+    console.log(nextProps, this.props);
+    if(nextProps!== this.props) {
+    this.setState({ reRender: true })
+    }
+  }
+  // componentDidUpdate(){
+  //   console.log('ff');
+  //     this.setState({ reRender: false })
+  // }
   pinRender = () => {
-    if (this.state.open) {
-      return <div className="pin-container">{this.pinIssues()}</div>
-    }
-    else {
-      let classes
-      if (this.props.pin.length > 0) {
-        classes = classNames({
-          'pin-icon': true,
-          'no-opacity': true
-        })
-      } else {
-        classes = classNames({
-          'pin-icon': true
-        })
+    console.log(this.state.reRender);
+  
+      if (this.state.open) {
+        return <div className="pin-container">{this.pinIssues()}</div>
       }
-      return <div className={classes}><GoPin onClick={() => this.openPin()} /></div>
-    }
+      else {
+        let classes
+        if (this.props.pin.length > 0) {
+          classes = classNames({
+            'pin-icon': true,
+            'no-opacity': true,
+            'rotate-scale-up': this.state.reRender
+          })
+        } else {
+          classes = classNames({
+            'pin-icon': true
+          })
+        }
+        return <div className={classes} ><GoPin onClick={() => this.openPin()} /></div>
+      }
+  
   }
 
 
@@ -56,22 +70,23 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
         <PinIssue key={issue.id} issue={issue} />
       ))
       return <div>{issues}
-        
+
         <span className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</span></div>
     }
     else {
       return <div>You haven't pin anything yet  <div className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</div></div>
     }
   }
+
   public render() {
     return (
 
-        <div className="pin-container-icon">
-          {this.pinRender()}
-        </div>
-     
+      <div className="pin-container-icon">
+        {this.pinRender()}
+      </div>
+   
+  
     )
-  }
 }
 
 function mapStateToProps(store: any) {
