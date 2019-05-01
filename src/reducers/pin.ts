@@ -12,7 +12,8 @@ export default function pinReducer(state = initialState, action?:any) {
       function checkIndex(item:any){
        return  issue.id != item.id
       }
-     const issue = action.issue
+     const issue = action.data
+     
      if(state.pin.every(checkIndex)){
       return {
         pin:[...state.pin, issue ]

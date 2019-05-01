@@ -37,12 +37,11 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
           {this.props.issue.issue} <br />
           {this.props.issue.title}
           <div className="due-date">
-
             <span className="bold">due date </span>{this.props.issue.dueDate}</div>
           <div className="issue-creator">
             {this.props.issue.creator}
           </div>
-          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this)}><GoPin /></div>
+          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin/></div>
           <MdModeEdit onClick={() => this.handleEdit(this)}> edit</MdModeEdit>
         </div>
       </div>
