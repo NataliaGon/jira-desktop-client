@@ -23,11 +23,14 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
 
     return (
       <div className="draggable-box" draggable onDragStart={(e: any) => this.props.DragCard(e)} id={this.props.id}>
-        {this.props.issue}
+        {this.props.issue} <br/>
+        {this.props.title} 
         <div className="due-date">
+        
           <span className="bold">due date </span>{this.props.dueDate}</div>
           <div className="issue-creator">
-          {this.props.creator}</div>
+          {this.props.creator}
+          </div>
         <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this)}><GoPin /></div>
       </div>
 

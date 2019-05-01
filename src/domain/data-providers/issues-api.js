@@ -5,6 +5,7 @@ function getIssues(name, password, callback, boardId, boardName) {
     const jira = jiraFunction(name, password)
     jira.board.getIssuesForBoard({
         boardId: boardId,
+        maxResults: '50',
         fields: [] 
     },
        function (error, issues) {

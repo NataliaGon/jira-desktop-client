@@ -59,11 +59,10 @@ class Table extends ComponentBase<TableProperties, TableState>{
     }
     getIssues = (status?: string) => {
         this.handleFilter(this.props.filter)
-        console.log(this.state.issues);
         if (this.state.issues) {
             const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name == status);
             return issues.map((i?: any) =>
-                <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.key} dueDate={i.fields.duedate} creator={i.fields.creator.displayName}></Draggable >
+                <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.key} dueDate={i.fields.duedate} creator={i.fields.creator.displayName} title={i.fields.summary}></Draggable >
             )
         }
     }
