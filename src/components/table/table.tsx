@@ -68,7 +68,15 @@ class Table extends ComponentBase<TableProperties, TableState>{
                     issue: i.key,
                     dueDate: i.fields.duedate,
                     creator: i.fields.creator.displayName,
-                    title: i.fields.summary
+                    title: i.fields.summary,
+                    project: i.fields.project.name,
+                    projectKey:i.fields.project.key,
+                    // epicName:i.fields.epic.name,
+                    // epicLink:i.fields.epic.self,
+                    priority:i.fields.priority.name,
+                    reporter:i.fields.displayName,
+                    // assignee:i.fields.assignee.displayName,
+                    created:i.fields.created,
                 }
                 return <Draggable DragCard={this.onDragCard} key={i.id} issue={issue}></Draggable >
             }

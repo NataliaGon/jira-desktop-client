@@ -28,6 +28,15 @@ h1{
     margin-top: 15px;
     background-color: lightgray;
 }
+.main-btn{
+    color: white;
+    border: 1px solid white;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size:18px;
+    background-color: lightgray;
+}
 form{
     color: brown;
     margin-top: 15px;
@@ -121,8 +130,6 @@ form{
 .icon-delete-pin{
     margin-left: 5px;
 }
-
-
 .pin-issue{
     list-style-type: none;
 }
@@ -180,18 +187,24 @@ input{
     bottom:15px;
     right:15px;
 }
-.delete-issue-btn{
-    position:absolute;
-    top:10px;
-    right: 10px;
-}
 
 /* Edit issue */
+.edit-issue>.pin-icon-wrapper{
+    right: 30px;
+}
 .edit-issue{
-    position: absolute;
-    top: 20px;
+    position: fixed;
+    z-index: 10;
+    top: 40px;
+    right: 5vw;
     left: 5vw;
-    width: 90vw;
     background: beige;
+    box-shadow: 5px 5px 100px grey;
     height: auto;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.edit-issue-icons-container{
+   
 }

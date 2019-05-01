@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { GoPin } from 'react-icons/go';
 import { TiDelete } from 'react-icons/ti';
-import { MdModeEdit } from 'react-icons/md';
+
+import { FaEye} from "react-icons/fa";
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
 import { toPin } from './issue.actions';
-import { IssueEdit } from '../issue-edit/issue-edit';
+import IssueEdit  from '../issue-edit/issue-edit';
 
 interface DraggableProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -23,16 +24,16 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
   }
 
 
-  handleEdit = () => {
-    console.log('edit');
+  watchMore = () => {
     this.setState({ edit: !this.state.edit });
   }
+   
 
   public render() {
 
     return (
       <div>
-        {this.state.edit ? <IssueEdit issue={this.props.issue} /> : ''}
+        {this.state.edit ? <IssueEdit closeWindow={this.watchMore} issue={this.props.issue} /> : ''}
         <div className="draggable-box" draggable onDragStart={(e: any) => this.props.DragCard(e)} id={this.props.issue.id}>
           {this.props.issue.issue} <br />
           {this.props.issue.title}
@@ -42,11 +43,9 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
             {this.props.issue.creator}
           </div>
           <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin/></div>
-          <MdModeEdit onClick={() => this.handleEdit(this)}> edit</MdModeEdit>
+          <FaEye onClick={() => this.watchMore(this)}/>  
         </div>
       </div>
-
-
     )
   }
 

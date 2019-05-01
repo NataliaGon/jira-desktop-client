@@ -1,10 +1,12 @@
 import * as React from "react";
 import { connect } from 'react-redux';
 
+
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 import PinIssue from '../pin-issue/pin-issue';
 import { GoPin } from 'react-icons/go';
 import { TiDelete } from 'react-icons/ti';
+
 var classNames = require('classnames');
 
 interface PinContainerProperties extends ComponentBaseProperties {
@@ -29,19 +31,21 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
     }
     else {
       let classes
-      if(this.props.pin.length > 0){
+      if (this.props.pin.length > 0) {
         classes = classNames({
-          'pin-icon':true,
+          'pin-icon': true,
           'no-opacity': true
         })
-      }else{
+      } else {
         classes = classNames({
-          'pin-icon':true
+          'pin-icon': true
         })
-      } 
+      }
       return <div className={classes}><GoPin onClick={() => this.openPin()} /></div>
     }
   }
+
+
   openPin = () => {
     this.setState({ open: !this.state.open })
   }
@@ -51,18 +55,21 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
       const issues = this.props.pin.map(issue => (
         <PinIssue key={issue.id} issue={issue} />
       ))
-      return <div>{issues}<div className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</div></div>
+      return <div>{issues}
+        
+        <span className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</span></div>
     }
     else {
-
       return <div>You haven't pin anything yet  <div className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</div></div>
     }
   }
   public render() {
     return (
-      <div className="pin-container-icon">
-        {this.pinRender()}
-      </div>
+
+        <div className="pin-container-icon">
+          {this.pinRender()}
+        </div>
+     
     )
   }
 }

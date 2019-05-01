@@ -80,9 +80,9 @@ function renderIssues(data: any, boardName:string) {
   const issues = issuesData.getIssues();
   mainWindow.send('issues', issues);
 }
-function renderGroup(group:any){
-  console.log('fs');
-}
+// function renderGroup(group:any){
+//   console.log('fs');
+// }
 function showResalts(data){
   mainWindow.send('searchResults', data);
 }
@@ -95,7 +95,7 @@ ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
 ipcMain.on('jira', (event: any, user: any) => {
   apiProvider.getBoard(user.name, user.password, handleDataBoards);
   apiProvider.getUserProfile(user.name, user.password, renderUser);
-  apiProvider.getUserGroup(user.name, user.password);
+  // apiProvider.getUserGroup(user.name, user.password);
 })
 
 
