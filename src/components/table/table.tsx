@@ -59,14 +59,24 @@ class Table extends ComponentBase<TableProperties, TableState>{
     }
     getIssues = (status?: string) => {
         this.handleFilter(this.props.filter)
+
         if (this.state.issues) {
             const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name == status);
-            return issues.map((i?: any) =>
-                <Draggable DragCard={this.onDragCard} key={i.id} id={i.id} issue={i.key} dueDate={i.fields.duedate} creator={i.fields.creator.displayName} title={i.fields.summary}></Draggable >
+            return issues.map((i?: any) => {
+                const issue = {
+                    id: i.id,
+                    issue: i.key,
+                    dueDate: i.fields.duedate,
+                    creator: i.fields.creator.displayName,
+                    title: i.fields.summary
+                }
+                return <Draggable DragCard={this.onDragCard} key={i.id} issue={issue}></Draggable >
+            }
             )
         }
     }
     mainRender = () => {
+        console.log(this.state.issues);
         return this.state.status.map((item?: any) =>
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
                 <h3>{item}</h3>
@@ -78,9 +88,9 @@ class Table extends ComponentBase<TableProperties, TableState>{
     handleFilter = (field: any, option) => {
         switch (field) {
             case 'Dute date':
-           if(this.state.issues){
-            console.log(this.state.issues.issues[0].issues[0].fields.duedate);
-           }         
+                if (this.state.issues) {
+                    console.log(this.state.issues.issues[0].issues[0].fields.duedate);
+                }
             default:
                 break;
         }

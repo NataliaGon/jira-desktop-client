@@ -19,7 +19,7 @@ class issuesStore extends Store {
   }
 
   addIssues(issues) {
-    this.issues = [ ...this.issues, issues ]
+    this.issues = [issues ]
     return this.saveIssues()
   }
 
