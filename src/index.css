@@ -12,7 +12,7 @@ main{
     padding: 30px;
 }
 h1{
-    color: brown;
+    color: white;
     font-size: 48px
 }
 .bold{
@@ -47,6 +47,9 @@ form{
 .flex{
     display: flex;
     justify-content: space-between;
+}
+.no-opacity svg{
+    opacity: 1!important;
 }
 .user-container{
     font-style:italic;

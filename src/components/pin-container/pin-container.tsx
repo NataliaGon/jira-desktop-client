@@ -5,6 +5,7 @@ import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../.
 import PinIssue from '../pin-issue/pin-issue';
 import { GoPin } from 'react-icons/go';
 import { TiDelete } from 'react-icons/ti';
+var classNames = require('classnames');
 
 interface PinContainerProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -27,7 +28,19 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
       return <div className="pin-container">{this.pinIssues()}</div>
     }
     else {
-      return <div className="pin-icon"><GoPin onClick={() => this.openPin()} /></div>
+      let classes
+      if(this.props.pin.length > 0){
+        classes = classNames({
+          'pin-icon':true,
+          'no-opacity': true
+        })
+      }else{
+        classes = classNames({
+          'pin-icon':true
+        })
+      }
+      
+      return <div className={classes}><GoPin onClick={() => this.openPin()} /></div>
     }
   }
   openPin = () => {
@@ -41,6 +54,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
       return <div>{issues}<div className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</div></div>
     }
     else {
+
       return <div>You haven't pin anything yet  <div className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</div></div>
     }
   }
