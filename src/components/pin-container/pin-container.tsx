@@ -28,63 +28,59 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
 
   state = {
     open: false,
-    reRender: false
+    // reRender: false
   }
 
- 
-
-  componentWillUpdate(nextProps, nextState) {
-;
-    if(nextProps!== this.props) {
-    this.setState({ reRender: true })
+  // componentWillUpdate(nextProps, nextState) {
+  //   if (nextProps !== this.props) {
+  //     this.setState({ reRender: true })
+  //   }
+  // }
+  componentDidUpdate(prevProps) {
+    console.log('now');
+    if (prevProps !== this.props) {
+      // this.changeNode()
     }
   }
-  changeNode=()=>{
+  changeNode = () => {
     const classUpd = classNames({
       'pin-icon': true,
-     
-      
+      'no-opacity': true
+
     })
- 
-    this.myRef.current.className= classUpd;
+
+    this.myRef.current.className = classUpd;
     return this.myRef.current
-   
+
   }
   pinRender = () => {
-   
-  
-      if (this.state.open) {
-        return <div className="pin-container">{this.pinIssues()}</div>
+    if (this.state.open) {
+      return <div className="pin-container">{this.pinIssues()}</div>
+    }
+    else {
+      let classes
+      if (this.props.pin.length > 0) {
+        classes = classNames({
+          'pin-icon': true,
+          'no-opacity': true,
+          'rotate-scale-up': true
+        })
+      } else {
+        classes = classNames({
+          'pin-icon': true
+        })
       }
-      else {
-        
-        let classes
-        if (this.props.pin.length > 0) {
-         
-          classes = classNames({
-            'pin-icon': true,
-            'no-opacity': true,
-            'rotate-scale-up': this.state.reRender
-          })
-        } else {
-          classes = classNames({
-            'pin-icon': true
-          })
-        }
-        return <div className={classes} ref={this.myRef} ><GoPin onClick={() => this.openPin()}
-        /></div>
-      }
-  
-  }
+      return <div className={classes} ref={this.myRef} ><GoPin onClick={() => this.openPin()}
+      /></div>
+    }
 
-  
+  }
 
   openPin = () => {
     this.setState({ open: !this.state.open })
   }
   pinIssues = () => {
     if (this.props.pin.length > 0) {
-      // console.log(this.props.pin);
       const issues = this.props.pin.map(issue => (
         <PinIssue key={issue.id} issue={issue} />
       ))
@@ -97,16 +93,14 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
   }
 
   public render() {
-    
-    return (
 
+    return (
       <div className="pin-container-icon">
         {this.pinRender()}
       </div>
-   
-  
+
     )
-}
+  }
 
 function mapStateToProps(store: any) {
   return {
