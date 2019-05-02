@@ -25,6 +25,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
     open: false,
     reRender: false
   }
+  const textInput = React.createRef();
   componentWillUpdate(nextProps, nexState) {
     console.log(nextProps, this.props);
     if(nextProps!== this.props) {
@@ -54,7 +55,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
             'pin-icon': true
           })
         }
-        return <div className={classes} ><GoPin onClick={() => this.openPin()} /></div>
+        return <div className={classes}  ref={this.textInput} ><GoPin onClick={() => this.openPin()} /></div>
       }
   
   }
