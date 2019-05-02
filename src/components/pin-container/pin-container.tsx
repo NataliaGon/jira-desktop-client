@@ -21,30 +21,46 @@ interface PinContainerState extends ComponentBaseState {
 
 class PinContainer extends ComponentBase<PinContainerProperties, PinContainerState>{
 
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+
   state = {
     open: false,
     reRender: false
   }
-  const textInput = React.createRef();
-  componentWillUpdate(nextProps, nexState) {
-    console.log(nextProps, this.props);
+
+ 
+
+  componentWillUpdate(nextProps, nextState) {
+;
     if(nextProps!== this.props) {
     this.setState({ reRender: true })
     }
   }
-  // componentDidUpdate(){
-  //   console.log('ff');
-  //     this.setState({ reRender: false })
-  // }
+  changeNode=()=>{
+    const classUpd = classNames({
+      'pin-icon': true,
+     
+      
+    })
+ 
+    this.myRef.current.className= classUpd;
+    return this.myRef.current
+   
+  }
   pinRender = () => {
-    console.log(this.state.reRender);
+   
   
       if (this.state.open) {
         return <div className="pin-container">{this.pinIssues()}</div>
       }
       else {
+        
         let classes
         if (this.props.pin.length > 0) {
+         
           classes = classNames({
             'pin-icon': true,
             'no-opacity': true,
@@ -55,23 +71,24 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
             'pin-icon': true
           })
         }
-        return <div className={classes}  ref={this.textInput} ><GoPin onClick={() => this.openPin()} /></div>
+        return <div className={classes} ref={this.myRef} ><GoPin onClick={() => this.openPin()}
+        /></div>
       }
   
   }
 
+  
 
   openPin = () => {
     this.setState({ open: !this.state.open })
   }
   pinIssues = () => {
     if (this.props.pin.length > 0) {
-      console.log(this.props.pin);
+      // console.log(this.props.pin);
       const issues = this.props.pin.map(issue => (
         <PinIssue key={issue.id} issue={issue} />
       ))
       return <div>{issues}
-
         <span className="icon-close">{<TiDelete onClick={() => this.openPin()} />}</span></div>
     }
     else {
@@ -80,6 +97,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
   }
 
   public render() {
+    
     return (
 
       <div className="pin-container-icon">
@@ -93,7 +111,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
 function mapStateToProps(store: any) {
   return {
     pin: store.pin.pin
-  };
+  }
 }
 
 export default connect(

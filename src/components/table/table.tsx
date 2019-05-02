@@ -84,7 +84,7 @@ class Table extends ComponentBase<TableProperties, TableState>{
         }
     }
     mainRender = () => {
-        console.log(this.state.issues);
+        // console.log(this.state.issues);
         return this.state.status.map((item?: any) =>
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
                 <h3>{item}</h3>
@@ -97,7 +97,7 @@ class Table extends ComponentBase<TableProperties, TableState>{
         switch (field) {
             case 'Dute date':
                 if (this.state.issues) {
-                    console.log(this.state.issues.issues[0].issues[0].fields.duedate);
+                    // console.log(this.state.issues.issues[0].issues[0].fields.duedate);
                 }
             default:
                 break;
