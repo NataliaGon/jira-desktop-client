@@ -48,9 +48,11 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
       'no-opacity': true
 
     })
+    if (this.myRef.current) {
+      this.myRef.current.className = classUpd;
+      return this.myRef.current
+    }
 
-    this.myRef.current.className = classUpd;
-    return this.myRef.current
 
   }
   pinRender = () => {
