@@ -39,8 +39,6 @@ export class Form extends ComponentBase<FormProperties, FormState>{
     }
   
     public render() {
-        console.log(`this state:${this.state}`)
-        console.log('cancel'+this.props.handleCancel);
         return (
           
             <div>

@@ -1,10 +1,10 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS  } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
-
+import Board from '../../data/board';
 
 const apiProvider = require('./domain/data-providers/')
-const storeElectron = require('./data/')
+const storeElectron = require('./domain/data-providers/local')
 
 
 const userData = new storeElectron.userStore({ name: 'User Main' })
@@ -62,8 +62,7 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 const user = userData.getUser().users[0];
 
-
-function handleDataBoards(data: any, user:any) {
+function handleDataBoards(data:Board, user:any) {
   mainWindow.send('boards', data);
   const isUser = userData.getUser().users[0];
   boardsStore.addProjects(data);
