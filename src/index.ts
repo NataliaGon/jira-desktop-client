@@ -83,16 +83,17 @@ function renderIssues(data: any, boardName:string) {
 // function renderGroup(group:any){
 //   console.log('fs');
 // }
-function showResalts(data){
-  mainWindow.send('searchResults', data);
-}
+// function showResalts(data){
+//   mainWindow.send('searchResults', data);
+// }
 
 ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
   apiProvider.getIssues(user.name, user.password, renderIssues, boardId, boardName);
 })
 
 
-ipcMain.on('jira', (event: any, user: any) => {
+ipcMain.on('hello-jira', (event: any, user: any) => {
+  console.log(user);
   apiProvider.getBoard(user.name, user.password, handleDataBoards);
   apiProvider.getUserProfile(user.name, user.password, renderUser);
   // apiProvider.getUserGroup(user.name, user.password);

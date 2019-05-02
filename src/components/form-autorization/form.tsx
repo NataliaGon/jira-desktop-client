@@ -2,8 +2,9 @@ import * as React from "react";
 const { ipcRenderer } = require('electron')
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 
-interface FormProperties extends ComponentBaseProperties {
 
+interface FormProperties extends ComponentBaseProperties {
+    handleCancel?:any
 }
 interface FormState extends ComponentBaseState {
     name?: string;
@@ -26,21 +27,22 @@ export class Form extends ComponentBase<FormProperties, FormState>{
     }
     handleSubmit = (event: any) => {
         event.preventDefault();
-        (this.state.name.length > 0 && this.state.password.length > 0) ? this.sendUser() : console.log('no')
+        (this.state.name.length > 0 && this.state.password.length > 0) ? this.sendUser() : console.log('EMPTY USER AUTORIZATION')
     }
-    handleCansel = ()=>{
-   
-    }
+
     sendUser = () => {
         const user = {
             name: this.state.name,
             password: this.state.password
         }
-        ipcRenderer.send('jira', user);
+        ipcRenderer.send('hello-jira', user);
     }
+  
     public render() {
-
+        console.log(`this state:${this.state}`)
+        console.log('cancel'+this.props.handleCancel);
         return (
+          
             <div>
                 <form action="">
                     <label>User name</label><br />
@@ -50,7 +52,7 @@ export class Form extends ComponentBase<FormProperties, FormState>{
                     <button className="btn-autorization" id="submit" type="submit" onClick={this.handleSubmit}>
                         Get Jira
                     </button>
-                    <button className="btn-autorization"  onClick={this.handleCansel()}>
+                    <button className="btn-autorization"  onClick={()=>this.props.handleCancel()}>
                         Cansel
                     </button>
                 </form>

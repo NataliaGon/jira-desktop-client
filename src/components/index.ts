@@ -1,1 +1,1 @@
-export * from './autoriz-form'
+export * from './form-autorization'
