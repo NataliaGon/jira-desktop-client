@@ -10,7 +10,6 @@ function getBoard(name, password, callback) {
             if (error){
                 console.log('no response from jira boards' + error); 
             }else{ 
-                console.log(boards);
                 const user={
                     name:name,
                     password:password

@@ -87,13 +87,18 @@ function renderIssues(data: any, boardName:string) {
 //   mainWindow.send('searchResults', data);
 // }
 
+function manageProjects(projects){
+console.log(`our projects ${JSON.stringify(projects)}`);
+const projectsData= new storeElectron.issuesStore({ name:`projects`});
+projectsData.addIssues(projects);
+}
+
 ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
   apiProvider.getIssues(user.name, user.password, renderIssues, boardId, boardName);
 })
 
 
 ipcMain.on('hello-jira', (event: any, user: any) => {
-  console.log(user);
   apiProvider.getBoard(user.name, user.password, handleDataBoards);
   apiProvider.getUserProfile(user.name, user.password, renderUser);
   // apiProvider.getUserGroup(user.name, user.password);
@@ -105,6 +110,7 @@ ipcMain.on('check-user', () => {
     mainWindow.send('login', true);
     apiProvider.getBoard(user.name, user.password, handleDataBoards);
     apiProvider.getUserProfile(user.name, user.password, renderUser);
+    apiProvider.getStatuses(user.name, user.password,manageProjects);
   }
 })
 
