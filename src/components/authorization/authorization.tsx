@@ -21,6 +21,11 @@ export class FormAutor extends ComponentBase<FormAutorProperties, FormAutorState
     }
     componentDidMount() {
         console.log('did Mount');
+        if(navigator.onLine) { 
+            console.log('online')
+        }else{
+            console.log('offline')
+        }
         ipcRenderer.send('check-user');
         ipcRenderer.on('login', (event: any, user: any) => {
             this.setState({ user: user })

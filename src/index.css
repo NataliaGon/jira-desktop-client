@@ -23,7 +23,9 @@ h1 {
 .bold {
     font-weight: bold
 }
-
+.display-none{
+    display: none
+}
 .btn-autorization {
     color: white;
     border: 1px solid white;

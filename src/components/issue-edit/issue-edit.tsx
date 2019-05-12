@@ -5,8 +5,7 @@ import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../.
 import { toPin } from '../issue/issue.actions';
 import { MdModeEdit } from 'react-icons/md';
 import { TiDelete } from 'react-icons/ti';
-
-
+const { ipcRenderer } = require('electron');
 
 interface IssueEditProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -19,11 +18,28 @@ interface IssueEditState extends ComponentBaseState {
 
 class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
   state = {
-    pin: false
+    pin: false,
+    isNameHidden: false,
+    isInputeHidden: true
+  }
+  componentDidUpdate() {
+    if (this.textInput) {
+      this.focus();
+    }
+  }
+  focus = () => {
+    this.textInput.focus();
+  };
+
+  toogleSpanInput =()=>{
+    this.setState({isNameHidden:!this.state.isNameHidden});
+    this.setState({isInputeHidden:!this.state.isInputeHidden});
   }
 
   public render() {
-console.log(this.props);
+    const spanClass =  (this.state.isNameHidden ? "display-none" : "");
+    const inputClass = (this.state.isInputeHidden ? "display-none": "");
+
     return (
       <div className="edit-issue" id={this.props.issue.id}>
         <div>
@@ -37,7 +53,27 @@ console.log(this.props);
           <h5>{this.props.issue.assignee}</h5>
           <h5>{this.props.issue.created}</h5>
           {this.props.issue.issue} <br />
-          {this.props.issue.title}
+         <span  className={spanClass} onClick={()=>{this.toogleSpanInput()}}>{this.props.issue.title}</span> 
+         <input
+            className={inputClass}
+            type="text"
+            defaultValue={this.props.issue.title}
+            onClick={() => this.toogleSpanInput()}
+            ref={input => {
+              this.textInput = input;
+            }}
+            onBlur={() => {
+              // this.props.changeTitle(this.textInput.value);
+              console.log(this.textInput.value);
+              ipcRenderer.send('editIssue', this.textInput.value )
+              this.toogleSpanInput();
+            }}
+            onKeyDown={e => {
+              if (e.keyCode === 13) {
+                this.textInput.blur();
+              }
+            }}
+          />
           <div className="due-date">
             <span className="bold">due date </span>{this.props.issue.dueDate}</div>
           <div className="issue-creator">

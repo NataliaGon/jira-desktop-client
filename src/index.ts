@@ -103,7 +103,9 @@ ipcMain.on('hello-jira', (event: any, user: any) => {
   apiProvider.getUserProfile(user.name, user.password, renderUser);
   // apiProvider.getUserGroup(user.name, user.password);
 })
-
+ipcMain.on('editIssue', (event: any, issue: any) => {
+  apiProvider.editIssue(user.name, user.password, issue)
+})
 
 ipcMain.on('check-user', () => {
   if (user) {
