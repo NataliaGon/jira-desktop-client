@@ -5,7 +5,6 @@ import PinIssue from '../pin-issue/pin-issue';
 import { GoPin } from 'react-icons/go';
 import { TiDelete } from 'react-icons/ti';
 
-let classNames = require('classnames');
 
 interface PinContainerProperties extends ComponentBaseProperties {
   DragCard?: any,
