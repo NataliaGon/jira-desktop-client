@@ -1,22 +1,25 @@
 import * as React from "react";
 const { ipcRenderer } = require('electron');
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
+import {Board} from '../../data/board';
 
 
 interface BoardsProperties extends ComponentBaseProperties {
-
+    
 }
 interface BoardsState extends ComponentBaseState {
-    boards?: Array
+    boards: Board
 }
 
 export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
     state = {
-        boards: []
+        boards:{}
     }
 
     componentDidMount(){
-        ipcRenderer.on('boards', (event: any, boards: any) => {
+        ipcRenderer.on('boards', (event: any, boards?: Board) => {
+            console.log(typeof(boards));
+            console.log(Board);
             this.setState({ boards: boards.values })
         })
     }

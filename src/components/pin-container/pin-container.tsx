@@ -1,13 +1,11 @@
 import * as React from "react";
 import { connect } from 'react-redux';
-
-
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 import PinIssue from '../pin-issue/pin-issue';
 import { GoPin } from 'react-icons/go';
 import { TiDelete } from 'react-icons/ti';
 
-var classNames = require('classnames');
+let classNames = require('classnames');
 
 interface PinContainerProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -28,55 +26,23 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
 
   state = {
     open: false,
-    animation:0
-    // isRender: false
+    shouldAnimate:false
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-    if (nextProps.pin !== this.props.pin) {
-      this.setState({ animation: this.state.animation +1 })
-    }
-  }
-// componentWillResevProps{
-
-// }
   componentDidUpdate(prevProps) {
-    console.log('now');
     if (prevProps !== this.props) {
-      // this.changeNode()
+      this.setState({ shouldAnimate: true });
     }
   }
-  changeNode = () => {
-    const classUpd = classNames({
-      'pin-icon': true,
-      'no-opacity': true
-
-    })
-    if (this.myRef.current) {
-      this.myRef.current.className = classUpd;
-      return this.myRef.current
-    }
-
-
-  }
+  
   pinRender = () => {
     if (this.state.open) {
       return <div className="pin-container">{this.pinIssues()}</div>
     }
     else {
-      let classes
-      if (this.props.pin.length > 0) {
-        classes = classNames({
-          'pin-icon': true,
-          'no-opacity': true,
-          'rotate-scale-up': true
-        })
-      } else {
-        classes = classNames({
-          'pin-icon': true
-        })
-      }
-      return <div className={classes} ref={this.myRef} key={this.state.animation}><GoPin onClick={() => this.openPin()}
+      return <div className={
+        this.state.shouldAnimate ? "pin-icon rotate-scale-up no-opacity":this.props.pin.length>0? "no-opacity pin-icon":"pin-icon"
+      }  onAnimationEnd={() => this.setState({ shouldAnimate: false })} ><GoPin onClick={() => this.openPin()}
       /></div>
     }
 

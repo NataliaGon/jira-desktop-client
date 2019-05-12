@@ -1,6 +1,7 @@
-export default class Board {
-    id: number;
-    self: string;
-    name: string;
-    type: string;
+
+export class Board {
+    id?: number;
+    self?: string;
+    name?: string;
+    type?: string;
 }
