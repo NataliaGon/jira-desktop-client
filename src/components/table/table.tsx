@@ -59,7 +59,6 @@ class Table extends ComponentBase<TableProperties, TableState>{
     }
     getIssues = (status?: string) => {
         this.handleFilter(this.props.filter)
-
         if (this.state.issues) {
             const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name == status);
             return issues.map((i?: any) => {
@@ -88,7 +87,9 @@ class Table extends ComponentBase<TableProperties, TableState>{
         return this.state.status.map((item?: any) =>
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
                 <h3>{item}</h3>
+                <div className="container-issues">
                 {this.getIssues(item)}
+                </div>
             </div>
         )
 
