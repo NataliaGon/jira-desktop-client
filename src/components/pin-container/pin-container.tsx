@@ -29,7 +29,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+    if (prevProps.pin.length !== this.props.pin.length) {
       this.setState({ shouldAnimate: true });
     }
   }
