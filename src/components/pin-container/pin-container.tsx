@@ -28,14 +28,18 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
 
   state = {
     open: false,
-    // reRender: false
+    animation:0
+    // isRender: false
   }
 
-  // componentWillUpdate(nextProps, nextState) {
-  //   if (nextProps !== this.props) {
-  //     this.setState({ reRender: true })
-  //   }
-  // }
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.pin !== this.props.pin) {
+      this.setState({ animation: this.state.animation +1 })
+    }
+  }
+// componentWillResevProps{
+
+// }
   componentDidUpdate(prevProps) {
     console.log('now');
     if (prevProps !== this.props) {
@@ -72,7 +76,7 @@ class PinContainer extends ComponentBase<PinContainerProperties, PinContainerSta
           'pin-icon': true
         })
       }
-      return <div className={classes} ref={this.myRef} ><GoPin onClick={() => this.openPin()}
+      return <div className={classes} ref={this.myRef} key={this.state.animation}><GoPin onClick={() => this.openPin()}
       /></div>
     }
 
