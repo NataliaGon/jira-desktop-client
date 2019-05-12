@@ -1,74 +1,90 @@
 /* main */
-body{
+
+body {
     overflow: scroll!important;
     padding: 0!important;
+}
 
-}
-header{
-    background-color: lightgray;;
+header {
+    background-color: lightgray;
+    ;
     padding: 30px;
 }
-main{
+
+main {
     padding: 30px;
 }
-h1{
+
+h1 {
     color: white;
     font-size: 48px
 }
-.bold{
+
+.bold {
     font-weight: bold
 }
-.btn-autorization{
+
+.btn-autorization {
     color: white;
     border: 1px solid white;
     font-weight: bold;
     padding: 5px 15px;
     border-radius: 5px;
-    font-size:22px;
+    font-size: 22px;
     margin-top: 15px;
     background-color: lightgray;
 }
-.main-btn{
+
+.main-btn {
     color: white;
     border: 1px solid white;
     font-weight: bold;
     padding: 5px 15px;
     border-radius: 5px;
-    font-size:18px;
+    font-size: 18px;
     background-color: lightgray;
 }
-form{
+
+form {
     color: brown;
     margin-top: 15px;
 }
-.container-boards{
+
+.container-boards {
     margin-top: 30px;
 }
-.list-board{
+
+.list-board {
     display: inline;
     list-style: none;
     margin-left: 15px;
     cursor: pointer;
 }
-.list-board:first-child{
+
+.list-board:first-child {
     margin-left: unset;
 }
-.flex{
+
+.flex {
     display: flex;
     justify-content: space-between;
 }
-.no-opacity svg{
+
+.no-opacity svg {
     opacity: 1!important;
 }
-.user-container{
-    font-style:italic;
+
+.user-container {
+    font-style: italic;
 }
-.title{
+
+.title {
     color: brown;
     font-weight: 900;
 }
-.table{
-    width:100%;
+
+.table {
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: space-around;
@@ -78,25 +94,28 @@ form{
     padding: 30px;
     box-sizing: border-box;
 }
-.droppable-container{
- flex: 0 0 16.66%;
-  padding: 15px;
-  box-sizing: border-box;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+
+.droppable-container {
+    flex: 0 0 16.66%;
+    padding: 15px;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
-.container-issues{
-  overflow: scroll;
-  margin-top: 15px;
+
+.container-issues {
+    overflow: scroll;
+    margin-top: 15px;
 }
-.droppable-container h3{
+
+.droppable-container h3 {
     font-weight: 900;
     font-size: 22px;
     color: gray;
 }
 
-.draggable-box{
+.draggable-box {
     background-color: white;
     border: 1px solid gray;
     width: 100%;
@@ -107,10 +126,11 @@ form{
     border-radius: 5px;
     position: relative;
 }
-.pin-container{
+
+.pin-container {
     position: fixed;
-    bottom:15px;
-    right:45px;
+    bottom: 15px;
+    right: 45px;
     width: auto;
     height: auto;
     padding: 25px;
@@ -118,37 +138,44 @@ form{
     border-radius: 5px;
     color: rgb(10, 10, 10);
 }
-.pin-container-icon{
+
+.pin-container-icon {
     position: fixed;
-    bottom:15px;
-    right:45px;
+    bottom: 15px;
+    right: 45px;
 }
-.pin-icon svg{
-    fill:darkgreen;
+
+.pin-icon svg {
+    fill: darkgreen;
     width: 1.5em;
-    height: 1.5em; 
+    height: 1.5em;
     cursor: pointer;
     opacity: 0.4;
 }
-.icon-close{
+
+.icon-close {
     position: absolute;
     top: 5px;
     right: 5px;
     cursor: pointer;
     color: rgb(10, 10, 10);
 }
-.icon-delete-pin{
+
+.icon-delete-pin {
     margin-left: 5px;
 }
-.pin-issue{
+
+.pin-issue {
     list-style-type: none;
 }
 
 /* Search */
-input{
+
+input {
     border: none;
 }
-.search-container{
+
+.search-container {
     height: 20px;
     border: 1px solid gray;
     display: flex;
@@ -159,50 +186,60 @@ input{
 }
 
 /* Filter */
-.filters-component{
+
+.filters-component {
     margin-top: 15px;
     height: 50px;
     display: flex;
     align-items: center;
 }
-.filter-container{
+
+.filter-container {
     display: flex;
     align-items: center;
     display: flex;
     align-items: center;
 }
-.filter-btn{
+
+.filter-btn {
     color: white;
     border: 1px solid white;
     font-weight: bold;
     padding: 5px 15px;
     border-radius: 5px;
-    font-size:18px;
+    font-size: 18px;
     background-color: lightgray;
 }
-.filter-options{
-    margin-left: 30px; 
+
+.filter-options {
+    margin-left: 30px;
 }
-.filter-opions-list{
-    padding:  2.5px 5px;
+
+.filter-opions-list {
+    padding: 2.5px 5px;
     border-bottom: 1px solid lightgrey;
     cursor: pointer;
 }
+
 /* Issues */
-.due-date{
+
+.due-date {
     margin-top: 10px
 }
-.pin-icon-wrapper{
+
+.pin-icon-wrapper {
     position: absolute;
-    bottom:15px;
-    right:15px;
+    bottom: 15px;
+    right: 15px;
 }
 
 /* Edit issue */
-.edit-issue>.pin-icon-wrapper{
+
+.edit-issue>.pin-icon-wrapper {
     right: 30px;
 }
-.edit-issue{
+
+.edit-issue {
     position: fixed;
     z-index: 10;
     top: 40px;
@@ -215,23 +252,25 @@ input{
     display: flex;
     justify-content: space-between;
 }
+
 /**
  * ----------------------------------------
  * animation rotate-scale-up
  * ----------------------------------------
  */
- @keyframes rotate-scale-up {
+
+@keyframes rotate-scale-up {
     0% {
-      transform: scale(1) rotateZ(0);
+        transform: scale(1) rotateZ(0);
     }
     50% {
-      transform: scale(2) rotateZ(180deg);
+        transform: scale(2) rotateZ(180deg);
     }
     100% {
-      transform: scale(1) rotateZ(360deg);
+        transform: scale(1) rotateZ(360deg);
     }
-  }
+}
+
 .rotate-scale-up {
     animation: rotate-scale-up 0.65s linear both;
-    
 }

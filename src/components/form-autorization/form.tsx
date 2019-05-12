@@ -39,8 +39,7 @@ export class Form extends ComponentBase<FormProperties, FormState>{
     }
   
     public render() {
-        return (
-          
+        return (       
             <div>
                 <form action="">
                     <label>User name</label><br />
