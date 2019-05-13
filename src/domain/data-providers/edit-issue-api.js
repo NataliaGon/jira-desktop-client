@@ -3,7 +3,6 @@ const jiraFunction = require('../autorization/user');
 
 function editIssue(name, password,issue) {
     const jira = jiraFunction(name, password)
-    console.log(issue.issue);
     jira.issue.editIssue({
         issueId:issue.issueId,
         issue: issue.issue   

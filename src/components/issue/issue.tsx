@@ -30,7 +30,7 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
    
 
   public render() {
-console.log(this.props.issue);
+
     return (
       <div>
         {this.state.edit ? <IssueEdit closeWindow={this.watchMore} issue={this.props.issue} /> : ''}

@@ -18,8 +18,6 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
 
     componentDidMount(){
         ipcRenderer.on('boards', (event: any, boards?: Board) => {
-            console.log(typeof(boards));
-            console.log(Board);
             this.setState({ boards: boards.values })
         })
     }

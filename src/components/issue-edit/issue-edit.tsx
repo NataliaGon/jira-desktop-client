@@ -45,14 +45,15 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
       <div className="edit-issue" id={this.props.issue.id}>
         <div>
           <EditableLine  text={this.props.issue.fields.summary} id ={this.props.issue.id} name={'summary'}></EditableLine> 
-          <h5>{this.props.issue.fields.project.name}</h5>
-          <h5>{this.props.issue.fields.creator.displayName}</h5>
-          <h5>{this.props.issue.fields.project.key}</h5>
-          <h5>{this.props.issue.fields.priority.name}</h5>
-          <h5>{this.props.issue.fields.displayName}</h5>
-          <h5>{this.props.issue.fields.assignee.displayName}</h5>
-          <h5>{this.props.issue.fields.created}</h5>
-          {this.props.issue.key} <br />
+          <EditableLine  text={this.props.issue.fields.project.name} id ={this.props.issue.id} name={'project'} nameTwo={'name'}></EditableLine> 
+          <h5>{this.props.issue.fields.project.name? this.props.issue.fields.project.name:''}</h5>
+          <h5>{this.props.issue.fields.creator.displayName? this.props.issue.fields.creator.displayName:''}</h5>
+          <h5>{this.props.issue.fields.project.key? this.props.issue.fields.project.key:''}</h5>
+          <h5>{this.props.issue.fields.priority.name? this.props.issue.fields.priority.name: ''}</h5>
+          <h5>{this.props.issue.fields.displayName? this.props.issue.fields.displayName: ''}</h5>
+          <h5>{this.props.issue.fields.assignee? this.props.issue.fields.assignee.displayName:''}</h5>
+          <h5>{this.props.issue.fields.created ? this.props.issue.fields.created: ''}</h5>
+          {this.props.issue.key? this.props.issue.key:''} <br />
          <span  className={spanClass} onClick={()=>{this.toogleSpanInput()}}>{this.props.issue.fields.summary}</span> 
          <input
             className={inputClass}
@@ -63,10 +64,10 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
               this.textInput = input;
             }}
             onBlur={() => {
-              this.props.issue.fields.summary = this.textInput.value;
+              // this.props.issue.fields.summary = this.textInput.value;
               const issueNew={
                 fields:{
-                  summary:this.props.issue.fields.summary
+                  summary:this.textInput.value
                 }
               }
               const issue = {

@@ -29,12 +29,17 @@ export default class EditableLine extends ComponentBase<EditableLineProperties, 
         this.setState({ isInputeHidden: !this.state.isInputeHidden });
     }
     
-    getIssueToChange =(name?:string, value?:string )=>{
+    getIssueToChange =(value?:string )=>{
         const  f={
             fields:{}
         }
-        f.fields[name]=value
-        return f
+        if (this.props.nameTwo){
+            f.fields[this.props.name][this.props.nameTwo]=value
+            console.log(f);
+        }else{
+            f.fields[this.props.name]=value
+            return f
+        } 
     }
 
     public render() {
@@ -51,12 +56,10 @@ export default class EditableLine extends ComponentBase<EditableLineProperties, 
                         this.textInput = input;
                     }}
                     onBlur={() => {
-                        console.log(this.getIssueToChange(this.props.name, this.textInput.value));
                           const issue = {
                             issueId:this.props.id,
-                            issue:this.getIssueToChange(this.props.name, this.textInput.value)
+                            issue:this.getIssueToChange(this.textInput.value)
                           }
-                         console.log(issue);
                           ipcRenderer.send('editIssue', issue)
                         this.toogleSpanInput();
                     }}
