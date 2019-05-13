@@ -1,16 +1,15 @@
 const jiraFunction = require('../autorization/user');
 
 
-function editIssue(name, password,issue,issueKey) {
-   console.log(issue)
+function editIssue(name, password,issue) {
     const jira = jiraFunction(name, password)
     jira.issue.editIssue({
-        issue: issue,
-        issueKey:issueKey
+        issueId:issue.issueId,
+        issue: issue.issue   
     },
        function (error, issues) {
-            if (error) { `error in getting issues:${console.log(error)}` }
-            console.log(issues);
+            if (error) { console.log(error) }
+            console.log(`edit issue${issues}`);
         }
     )
 }

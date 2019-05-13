@@ -61,23 +61,24 @@ class Table extends ComponentBase<TableProperties, TableState>{
         this.handleFilter(this.props.filter)
         if (this.state.issues) {
             const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name == status);
+            console.log(issues[0]);
             return issues.map((i?: any) => {
-                const issue = {
-                    id: i.id,
-                    issue: i.key,
-                    dueDate: i.fields.duedate,
-                    creator: i.fields.creator.displayName,
-                    title: i.fields.summary,
-                    project: i.fields.project.name,
-                    projectKey:i.fields.project.key,
-                    // epicName:i.fields.epic.name,
-                    // epicLink:i.fields.epic.self,
-                    priority:i.fields.priority.name,
-                    reporter:i.fields.displayName,
-                    // assignee:i.fields.assignee.displayName,
-                    created:i.fields.created,
-                }
-                return <Draggable DragCard={this.onDragCard} key={i.id} issue={issue}></Draggable >
+                // const issue = {
+                //     id: i.id,
+                //     issue: i.key,
+                //     dueDate: i.fields.duedate,
+                //     creator: i.fields.creator.displayName,
+                //     title: i.fields.summary,
+                //     project: i.fields.project.name,
+                //     projectKey:i.fields.project.key,
+                //     // epicName:i.fields.epic.name,
+                //     // epicLink:i.fields.epic.self,
+                //     priority:i.fields.priority.name,
+                //     reporter:i.fields.displayName,
+                //     // assignee:i.fields.assignee.displayName,
+                //     created:i.fields.created,
+                // }
+                return <Draggable DragCard={this.onDragCard} key={i.id} issue={i}></Draggable >
             }
             )
         }

@@ -37,23 +37,24 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
   }
 
   public render() {
+    console.log(this.props.issue);
     const spanClass =  (this.state.isNameHidden ? "display-none" : "");
     const inputClass = (this.state.isInputeHidden ? "display-none": "");
 
     return (
       <div className="edit-issue" id={this.props.issue.id}>
         <div>
-          <h5>{this.props.issue.project}</h5>
-          <h5>{this.props.issue.creator}</h5>
-          <h5>{this.props.issue.projectKey}</h5>
-          <h5>{this.props.issue.epicName}</h5>
-          <h5>{this.props.issue.epicLink}</h5>
-          <h5>{this.props.issue.priority}</h5>
-          <h5>{this.props.issue.reporter}</h5>
-          <h5>{this.props.issue.assignee}</h5>
-          <h5>{this.props.issue.created}</h5>
-          {this.props.issue.issue} <br />
-         <span  className={spanClass} onClick={()=>{this.toogleSpanInput()}}>{this.props.issue.title}</span> 
+          <h5>{this.props.issue.fields.project.name}</h5>
+          <h5>{this.props.issue.fields.creator.displayName}</h5>
+          <h5>{this.props.issue.fields.project.key}</h5>
+          {/* <h5>{this.props.issue.fields.epic.name}</h5> */}
+          {/* <h5>{this.props.issue.fields.epic.self}</h5> */}
+          <h5>{this.props.issue.fields.priority.name}</h5>
+          <h5>{this.props.issue.fields.displayName}</h5>
+          <h5>{this.props.issue.fields.assignee.displayName}</h5>
+          <h5>{this.props.issue.fields.created}</h5>
+          {this.props.issue.key} <br />
+         <span  className={spanClass} onClick={()=>{this.toogleSpanInput()}}>{this.props.issue.fields.summary}</span> 
          <input
             className={inputClass}
             type="text"
@@ -64,8 +65,15 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
             }}
             onBlur={() => {
               // this.props.changeTitle(this.textInput.value);
-              console.log(this.textInput.value);
-              ipcRenderer.send('editIssue', this.textInput.value )
+              console.log(this.props.issue);
+              this.props.issue.fields.summary = this.textInput.value;
+              console.log(this.props.issue);
+              const issue = {
+                issueId:this.props.issue.id,
+                issue:this.props.issue
+              }
+              console.log(issue);
+              ipcRenderer.send('editIssue', issue)
               this.toogleSpanInput();
             }}
             onKeyDown={e => {
@@ -75,9 +83,9 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
             }}
           />
           <div className="due-date">
-            <span className="bold">due date </span>{this.props.issue.dueDate}</div>
+            <span className="bold">due date </span>{this.props.issue.fields.duedate}</div>
           <div className="issue-creator">
-            {this.props.issue.creator}
+            {this.props.issue.fields.creator.displayName}
           </div>
         </div>
         <div className="edit-issue-icons-container">

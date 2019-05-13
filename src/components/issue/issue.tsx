@@ -30,19 +30,19 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
    
 
   public render() {
-
+console.log(this.props.issue);
     return (
       <div>
         {this.state.edit ? <IssueEdit closeWindow={this.watchMore} issue={this.props.issue} /> : ''}
         <div className="draggable-box" draggable onDragStart={(e: any) => this.props.DragCard(e)} id={this.props.issue.id}>
-          {this.props.issue.issue} <br />
-          {this.props.issue.title}
+          {this.props.issue.key} <br />
+          {this.props.issue.fields.summary}
           <div className="due-date">
-            <span className="bold">due date </span>{this.props.issue.dueDate}</div>
+            <span className="bold">due date </span>{this.props.issue.fields.duedate}</div>
           <div className="issue-creator">
-            {this.props.issue.creator}
+            {this.props.issue.fields.creator.displayName}
           </div>
-          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin/></div>
+          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.key)}><GoPin/></div>
           <FaEye onClick={() => this.watchMore(this)}/>  
         </div>
       </div>
