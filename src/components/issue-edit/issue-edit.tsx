@@ -68,9 +68,15 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
               console.log(this.props.issue);
               this.props.issue.fields.summary = this.textInput.value;
               console.log(this.props.issue);
+              const issueNew={
+                fields:{
+                  summary:this.props.issue.fields.summary
+                }
+                
+              }
               const issue = {
                 issueId:this.props.issue.id,
-                issue:this.props.issue
+                issue:issueNew
               }
               console.log(issue);
               ipcRenderer.send('editIssue', issue)
