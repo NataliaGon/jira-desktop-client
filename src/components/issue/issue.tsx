@@ -42,7 +42,7 @@ console.log(this.props.issue);
           <div className="issue-creator">
             {this.props.issue.fields.creator.displayName}
           </div>
-          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.key)}><GoPin/></div>
+          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin/></div>
           <FaEye onClick={() => this.watchMore(this)}/>  
         </div>
       </div>

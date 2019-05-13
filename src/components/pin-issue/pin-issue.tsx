@@ -24,10 +24,11 @@ class PinIssue extends ComponentBase<PinIssueProperties, PinIssueState>{
   }
 
   public render() {
+    console.log(this.props.issue);
     return (
       <div>
         {this.state.edit ? <IssueEdit closeWindow={this.watchMore} issue={this.props.issue} /> : ''}
-        <li className="pin-issue" >{this.props.issue.issue} <span className="icon-delete-pin">
+        <li className="pin-issue" >{this.props.issue.key} <span className="icon-delete-pin">
           <FaEye onClick={() => this.watchMore(this)} />
           <FaTrashAlt
             onClick={() => this.props.deletePin(this.props.issue.id)}

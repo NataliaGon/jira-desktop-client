@@ -61,30 +61,13 @@ class Table extends ComponentBase<TableProperties, TableState>{
         this.handleFilter(this.props.filter)
         if (this.state.issues) {
             const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name == status);
-            console.log(issues[0]);
             return issues.map((i?: any) => {
-                // const issue = {
-                //     id: i.id,
-                //     issue: i.key,
-                //     dueDate: i.fields.duedate,
-                //     creator: i.fields.creator.displayName,
-                //     title: i.fields.summary,
-                //     project: i.fields.project.name,
-                //     projectKey:i.fields.project.key,
-                //     // epicName:i.fields.epic.name,
-                //     // epicLink:i.fields.epic.self,
-                //     priority:i.fields.priority.name,
-                //     reporter:i.fields.displayName,
-                //     // assignee:i.fields.assignee.displayName,
-                //     created:i.fields.created,
-                // }
                 return <Draggable DragCard={this.onDragCard} key={i.id} issue={i}></Draggable >
             }
             )
         }
     }
     mainRender = () => {
-        // console.log(this.state.issues);
         return this.state.status.map((item?: any) =>
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
                 <h3>{item}</h3>

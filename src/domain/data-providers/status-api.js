@@ -6,8 +6,8 @@ function getStatuses(name, password, callback) {
     jira.status.getAllStatuses({
     },
        function (error, status) {
-            if (error) { `error in getting issues:${console.log(error)}` }
-            console.log(status);
+            if (error) { `error in getting status:${console.log(error)}` }
+            // console.log(status);
             // callback(status);
         }
     );
@@ -15,8 +15,8 @@ function getStatuses(name, password, callback) {
 
     },
     function (error, status) {
-        if (error) { `error in getting issues:${console.log(error)}` }
-        console.log(`project statuses${status}` );
+        if (error) { `error in getting status:${console.log(error)}` }
+        // console.log(`project statuses${status}` );
         // callback(status);
     }
     );
@@ -24,9 +24,9 @@ function getStatuses(name, password, callback) {
 
     },
     function (error, projects) {
-        if (error) { `error in getting issues:${console.log(error)}` }
-        console.log(`project statuses${projects}` );
-        callback(projects);
+        if (error) { `error in getting status:${console.log(error)}` }
+        // console.log(`project statuses${projects}` );
+        // callback(projects);
     }
     )
 }

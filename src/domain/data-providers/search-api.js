@@ -6,7 +6,7 @@ function search(name, password, search, callback) {
         search
     },
        function (error, results) {
-            if (error) { `error in getting issues:${console.log(error)}` }
+            if (error) { `error in getting search:${console.log(error)}` }
             callback(results);
         }
     )

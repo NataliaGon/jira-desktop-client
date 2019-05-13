@@ -6,6 +6,7 @@ import { toPin } from '../issue/issue.actions';
 import { MdModeEdit } from 'react-icons/md';
 import { TiDelete } from 'react-icons/ti';
 const { ipcRenderer } = require('electron');
+import EditableLine from '../issue-edit-line/issue-edit-line';
 
 interface IssueEditProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -29,7 +30,7 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
   }
   focus = () => {
     this.textInput.focus();
-  };
+  }
 
   toogleSpanInput =()=>{
     this.setState({isNameHidden:!this.state.isNameHidden});
@@ -37,18 +38,16 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
   }
 
   public render() {
-    console.log(this.props.issue);
     const spanClass =  (this.state.isNameHidden ? "display-none" : "");
     const inputClass = (this.state.isInputeHidden ? "display-none": "");
 
     return (
       <div className="edit-issue" id={this.props.issue.id}>
         <div>
+          <EditableLine  text={this.props.issue.fields.summary} id ={this.props.issue.id} name={'summary'}></EditableLine> 
           <h5>{this.props.issue.fields.project.name}</h5>
           <h5>{this.props.issue.fields.creator.displayName}</h5>
           <h5>{this.props.issue.fields.project.key}</h5>
-          {/* <h5>{this.props.issue.fields.epic.name}</h5> */}
-          {/* <h5>{this.props.issue.fields.epic.self}</h5> */}
           <h5>{this.props.issue.fields.priority.name}</h5>
           <h5>{this.props.issue.fields.displayName}</h5>
           <h5>{this.props.issue.fields.assignee.displayName}</h5>
@@ -64,21 +63,16 @@ class IssueEdit extends ComponentBase<IssueEditProperties, IssueEditState>{
               this.textInput = input;
             }}
             onBlur={() => {
-              // this.props.changeTitle(this.textInput.value);
-              console.log(this.props.issue);
               this.props.issue.fields.summary = this.textInput.value;
-              console.log(this.props.issue);
               const issueNew={
                 fields:{
                   summary:this.props.issue.fields.summary
                 }
-                
               }
               const issue = {
                 issueId:this.props.issue.id,
                 issue:issueNew
               }
-              console.log(issue);
               ipcRenderer.send('editIssue', issue)
               this.toogleSpanInput();
             }}
