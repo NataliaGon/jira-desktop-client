@@ -17,12 +17,32 @@ class Table extends ComponentBase<TableProperties, TableState>{
     state = {
         status: ['In progress', 'Open', 'Closed', 'Stalled', 'Internal review', 'Client review']
     };
-
+    
+    handleScroll = (e?:any) => {
+        console.log(e.target);
+        if (
+            e.target.scrollHeight  - e.target.scrollTop
+            === e.target.clientHeight
+          ) {
+            // ipcRenderer.send('getIssues', boardId, boardName, 1)
+            console.log(
+                'yep'
+            );
+          }else{
+              'no'
+          }
+    }
     componentDidMount() {
         ipcRenderer.on('issues', (event: any, data: any) => {
             this.setState({ issues: data })
-        })
+        });
+        // window.addEventListener('scroll', this.handleScroll);
     }
+  
+    // componentWillUnmount() {
+    //   window.removeEventListener('scroll', this.handleScroll);
+    // }
+
     moveCard(data: any, newList: any) {
         for (let i in this.state.issues.issues[0].issues) {
             if (this.state.issues.issues[0].issues[i].id == data.cardId) {
@@ -71,7 +91,7 @@ class Table extends ComponentBase<TableProperties, TableState>{
         return this.state.status.map((item?: any) =>
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
                 <h3>{item}</h3>
-                <div className="container-issues">
+                <div className="container-issues"  onScroll={this.handleScroll}>
             
                     {this.getIssues(item)}
                  
@@ -92,7 +112,6 @@ class Table extends ComponentBase<TableProperties, TableState>{
     }
 
     public render() {
-        
         return (
             <div className="table">
                 {this.mainRender()}
