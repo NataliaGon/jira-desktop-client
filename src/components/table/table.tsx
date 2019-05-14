@@ -24,7 +24,7 @@ class Table extends ComponentBase<TableProperties, TableState>{
             e.target.scrollHeight  - e.target.scrollTop
             === e.target.clientHeight
           ) {
-            // ipcRenderer.send('getIssues', boardId, boardName, 1)
+            ipcRenderer.send('getIssues', this.state.boardId, this.state.boardName, 51)
             console.log(
                 'yep'
             );
@@ -33,8 +33,10 @@ class Table extends ComponentBase<TableProperties, TableState>{
           }
     }
     componentDidMount() {
-        ipcRenderer.on('issues', (event: any, data: any) => {
-            this.setState({ issues: data })
+        ipcRenderer.on('issues', (event: any, data: any, boardId) => {
+            this.setState({ issues: data,
+                boardId:boardId
+             })
         });
         // window.addEventListener('scroll', this.handleScroll);
     }

@@ -74,11 +74,11 @@ function handleDataBoards(data, user) {
 function renderUser(data: any) {
   mainWindow.send('user', data);
 }
-function renderIssues(data: any, boardName:string) {
+function renderIssues(data: any, boardName:string, boardId:number) {
   const issuesData= new storeElectron.issuesStore({ name:`issues-${boardName}`});
   issuesData.addIssues(data);
   const issues = issuesData.getIssues();
-  mainWindow.send('issues', issues);
+  mainWindow.send('issues', issues, boardId, boardName);
 }
 // function renderGroup(group:any){
 //   console.log('fs');

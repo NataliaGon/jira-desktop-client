@@ -11,7 +11,8 @@ function getIssues(name, password, callback, boardId, boardName,startAt) {
     },
        function (error, issues) {
             if (error) { `error in getting issues:${console.log(error)}` }
-            callback(issues, boardName);
+            callback(issues, boardName, boardId);
+            console.log(issues);
         }
     )
 }
