@@ -3,7 +3,7 @@ import Draggable from '../issue/issue';
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 const { ipcRenderer } = require('electron');
-var update = require('react-addons-update');
+// import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 interface TableProperties extends ComponentBaseProperties {
@@ -72,7 +72,9 @@ class Table extends ComponentBase<TableProperties, TableState>{
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
                 <h3>{item}</h3>
                 <div className="container-issues">
-                {this.getIssues(item)}
+            
+                    {this.getIssues(item)}
+                 
                 </div>
             </div>
         )
@@ -90,10 +92,23 @@ class Table extends ComponentBase<TableProperties, TableState>{
     }
 
     public render() {
+        
         return (
             <div className="table">
                 {this.mainRender()}
             </div>
+            // <div>
+                /* <InfiniteScroll
+                pageStart={0}
+                loadMore={}
+                hasMore={}
+                loader={}>
+
+                <div className="tracks">
+                   
+                </div>
+            </InfiniteScroll> */
+            /* </div> */
 
         )
     }

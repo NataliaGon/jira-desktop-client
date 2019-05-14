@@ -2,7 +2,7 @@ import * as React from "react";
 const { ipcRenderer } = require('electron');
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 import {Board} from '../../data/board';
-
+import InfiniteScroll from 'react-infinite-scroller';
 
 interface BoardsProperties extends ComponentBaseProperties {
     
@@ -35,6 +35,7 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
     }
 
     public render() {
+        console.log(InfiniteScroll);
         const boardsHTML = this.boardsList();
         return (
             <ul className="container-boards" >
