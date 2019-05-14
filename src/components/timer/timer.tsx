@@ -1,12 +1,11 @@
 import * as React from 'react';
-
 import { IoIosTimer } from 'react-icons/io';
 import {MdPause} from 'react-icons/md';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
-
+const { ipcRenderer } = require('electron');
 
 interface TimerProperties extends ComponentBaseProperties {
-
+ id?:number
 }
 interface TimerState extends ComponentBaseState {
 }
@@ -31,6 +30,18 @@ export default class Timer extends ComponentBase<TimerProperties, TimerState>{
             isStart: true,
             isStop: false
         })
+        const issueNew={
+            fields:{
+                timetracking:{
+                    timeSpentSeconds:Date.now() - this.state.start
+                }
+            }
+          }
+        const issue = {
+            issueId:this.props.id,
+            issue:issueNew
+          }
+          ipcRenderer.send('editIssue', issue)
     }
 
     public render() {

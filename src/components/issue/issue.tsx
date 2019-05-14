@@ -45,7 +45,7 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
           <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin /></div>
           <div className="display-flex">
             <FaEye onClick={() => this.watchMore(this)} />
-            <Timer/>
+            <Timer id={this.props.issue.id}/>
           </div>
         </div>
       </div>
