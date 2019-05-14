@@ -93,8 +93,8 @@ function renderIssues(data: any, boardName:string) {
 // projectsData.addIssues(projects);
 // }
 
-ipcMain.on('getIssues', (event: any, boardId:number, boardName:string) => {
-  apiProvider.getIssues(user.name, user.password, renderIssues, boardId, boardName);
+ipcMain.on('getIssues', (event?: any, boardId?:number, boardName?:string, startAt?:number) => {
+  apiProvider.getIssues(user.name, user.password, renderIssues, boardId, boardName, startAt);
 })
 
 

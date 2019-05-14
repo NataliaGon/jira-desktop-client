@@ -23,7 +23,7 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
     }
     
     getIssues(boardId:number, boardName:string){
-        ipcRenderer.send('getIssues', boardId, boardName)
+        ipcRenderer.send('getIssues', boardId, boardName, 1)
     }
 
     boardsList = () => {

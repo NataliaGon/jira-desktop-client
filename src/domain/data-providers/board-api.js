@@ -2,7 +2,6 @@ const jiraFunction = require('../autorization/user');
 
 
 function getBoard(name, password, callback) {
-
     const jira = jiraFunction(name, password)
     jira.board.getAllBoards(
         {},
@@ -16,7 +15,6 @@ function getBoard(name, password, callback) {
                 }
                 callback(boards, user)
             }
-            
         }
     )
 }	

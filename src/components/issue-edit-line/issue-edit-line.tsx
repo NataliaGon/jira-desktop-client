@@ -35,7 +35,7 @@ export default class EditableLine extends ComponentBase<EditableLineProperties, 
         }
         if (this.props.nameTwo){
             f.fields[this.props.name][this.props.nameTwo]=value
-            console.log(f);
+            console.log(f);//To work on
         }else{
             f.fields[this.props.name]=value
             return f
