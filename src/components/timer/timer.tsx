@@ -19,23 +19,15 @@ export default class Timer extends ComponentBase<TimerProperties, TimerState>{
     }
     startTimer() {
         this.setState({
-            // time: this.state.time,
             start: Date.now(),
             isStart: false,
             isStop: true
         })
-        // this.timer = setInterval(() => this.setState({
-        //     time: Date.now() - this.state.start
-        // }), 1)
-
     }
     stopTimer() {
-        // clearInterval(this.timer)
-  
-        console.log(this.state.start);
+        const time = Date.now() - this.state.start
+        console.log(time);
         this.setState({
-            // time: this.state.time,
-            start: Date.now(),
             isStart: true,
             isStop: false
         })
