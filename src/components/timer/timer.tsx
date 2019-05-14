@@ -30,6 +30,8 @@ export default class Timer extends ComponentBase<TimerProperties, TimerState>{
             isStart: true,
             isStop: false
         })
+       const conf= confirm('Would you like to save time?');
+     if(conf){
         const issueNew={
             fields:{
                 timetracking:{
@@ -41,7 +43,7 @@ export default class Timer extends ComponentBase<TimerProperties, TimerState>{
             issueId:this.props.id,
             issue:issueNew
           }
-          ipcRenderer.send('editIssue', issue)
+          ipcRenderer.send('editIssue', issue)}
     }
 
     public render() {
