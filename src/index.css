@@ -26,6 +26,12 @@ h1 {
 .display-none{
     display: none
 }
+.display{
+    display:block
+}
+.display-flex{
+    display: flex;
+}
 .btn-autorization {
     color: white;
     border: 1px solid white;

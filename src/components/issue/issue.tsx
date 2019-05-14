@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { GoPin } from 'react-icons/go';
 import { TiDelete } from 'react-icons/ti';
-import { FaEye} from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
 import { toPin } from './issue.actions';
 import Timer from '../timer/timer';
-import IssueEdit  from '../issue-edit/issue-edit';
+import IssueEdit from '../issue-edit/issue-edit';
 
 interface DraggableProperties extends ComponentBaseProperties {
   DragCard?: any,
@@ -27,7 +27,7 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
   watchMore = () => {
     this.setState({ edit: !this.state.edit });
   }
-   
+
 
   public render() {
 
@@ -42,9 +42,11 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
           <div className="issue-creator">
             {this.props.issue.fields.creator.displayName}
           </div>
-          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin/></div>
-          <FaEye onClick={() => this.watchMore(this)}/> 
-          <Timer/> 
+          <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin /></div>
+          <div className="display-flex">
+            <FaEye onClick={() => this.watchMore(this)} />
+            <Timer/>
+          </div>
         </div>
       </div>
     )
