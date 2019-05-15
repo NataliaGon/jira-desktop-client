@@ -114,6 +114,7 @@ form {
 .container-issues {
     overflow: scroll;
     margin-top: 15px;
+    height: 100%;
 }
 
 .droppable-container h3 {

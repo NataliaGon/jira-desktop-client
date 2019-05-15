@@ -1,46 +1,32 @@
 import * as React from "react";
-import Draggable from '../issue/issue';
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from "../../base-classes";
 const { ipcRenderer } = require('electron');
-// import InfiniteScroll from 'react-infinite-scroll-component';
+import IssueStatusColumn from './issue-status-column'
 
 
-interface TableProperties extends ComponentBaseProperties {
-
-}
-interface TableState extends ComponentBaseState {
+interface TProperties extends ComponentBaseProperties {
 
 }
+interface TState extends ComponentBaseState {
 
-class Table extends ComponentBase<TableProperties, TableState>{
+}
+
+class T extends ComponentBase<TProperties, TState>{
     state = {
         status: ['In progress', 'Open', 'Closed', 'Stalled', 'Internal review', 'Client review']
     };
-    
-    handleScroll = (e?:any) => {
-        if (
-            e.target.scrollHeight  - e.target.scrollTop
-            === e.target.clientHeight
-          ) {
-            ipcRenderer.send('getIssues', this.state.boardId, this.state.boardName, 51)
-            console.log(
-                'yep'
-            );
-          }else{
-              'no'
-          }
-    }
+
     componentDidMount() {
-        ipcRenderer.on('issues', (event: any, data: any, boardId:number) => {
-           
-            this.setState({ issues: data,
-                boardId:boardId
-             })
+        ipcRenderer.on('issues', (event: any, data: any, boardId: number) => {
+            this.setState({
+                issues: data,
+                boardId: boardId
+            })
         });
 
     }
-  
+
     moveCard(data: any, newList: any) {
         for (let i in this.state.issues.issues[0].issues) {
             if (this.state.issues.issues[0].issues[i].id == data.cardId) {
@@ -51,13 +37,7 @@ class Table extends ComponentBase<TableProperties, TableState>{
         }
 
     }
-    getIssue = (id: any) => {
-        for (let i of this.state.allIssues) {
-            if (i.id == id) {
-                return i
-            }
-        }
-    }
+
     onDragOver = (e: any) => {
         e.preventDefault();
     }
@@ -74,23 +54,11 @@ class Table extends ComponentBase<TableProperties, TableState>{
         }
         e.dataTransfer.setData('text', JSON.stringify(data));
     }
-    getIssues = (status?: string) => {
-        this.handleFilter(this.props.filter)
-        if (this.state.issues) {
-            const issues = this.state.issues.issues[0].issues.filter(item => item.fields.status.name == status);
-            return issues.map((i?: any) => {
-                return <Draggable DragCard={this.onDragCard} key={i.id} issue={i}></Draggable >
-            }
-            )
-        }
-    }
+
     mainRender = () => {
         return this.state.status.map((item?: any) =>
             <div className="droppable-container" key={item} onDragOver={(e: any) => this.onDragOver(e)} onDrop={(e: any) => this.onDrop(e)} id={item}>
-                <h3>{item}</h3>
-                <div className="container-issues"  onScroll={this.handleScroll}>
-                    {this.getIssues(item)}    
-                </div>
+                <IssueStatusColumn status={item} DragCard={this.onDragCard} />
             </div>
         )
     }
@@ -125,4 +93,4 @@ function mapStateToProps(store: any) {
 export default connect(
     mapStateToProps,
     null
-)(Table);
+)(T);
