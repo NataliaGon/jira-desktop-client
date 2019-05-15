@@ -3,11 +3,12 @@ import * as React from 'react';
 import { Boards } from './components/boards/boards';
 import { User } from './components/user/user';
 import { FormAutor } from './components/authorization/authorization';
-import Table  from './components/table/table';
+import Table from './components/table/table';
 import T from './components/table/t';
 import PinContainer from './components/pin-container/pin-container';
 import { Search } from './components/search/search';
 import Filters from './components/filter/filter';
+import MainTimer from './components/main-timer/main-timer'
 
 export class App extends React.Component<undefined, undefined> {
 
@@ -26,11 +27,14 @@ export class App extends React.Component<undefined, undefined> {
         </header>
         <main>
           <Boards />
-          <Filters/>
+          <Filters />
           {/* <Table /> */}
-          <T/>
-          <PinContainer />
+          <T />
         </main>
+        <footer>
+          <MainTimer />
+          <PinContainer />
+        </footer>
       </div>
     );
   }
