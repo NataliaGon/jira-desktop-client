@@ -13,16 +13,16 @@ interface SearchPopUpState extends ComponentBaseState {
 
 export default class SearchPopUp extends ComponentBase<SearchPopUpProperties, SearchPopUpState>{
     state = {
-        
+
     }
 
-public render() {
-    return (
-        <div className="container-search-pop-up">
-          <div className="icon-close"><TiDelete onClick={() => this.props.handleClose()} /></div> 
-          search
-          <button className="main-btn">create new issue</button>
-        </div>
-    )
-}
+    public render() {
+        return (
+            <div className="container-search-pop-up">
+                <div className="icon-close"><TiDelete onClick={() => this.props.handleClose()} /></div>
+                search
+          <button className="main-btn" onClick={() => this.props.handleClose()}>create new issue</button>
+            </div>
+        )
+    }
 }

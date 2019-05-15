@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { GoPin } from 'react-icons/go';
-import { TiDelete } from 'react-icons/ti';
 import { FaEye } from "react-icons/fa";
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';

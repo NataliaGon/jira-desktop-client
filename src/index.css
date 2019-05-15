@@ -331,6 +331,9 @@ footer .main-timer svg{
     color:green;
     font-size: 32px;
 }
+footer .timer-search-bar{
+    z-index:0
+}
 .container-search-pop-up{
     position: fixed;
     top: 100px;
