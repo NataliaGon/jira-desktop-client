@@ -139,12 +139,14 @@ form {
     position: fixed;
     bottom: 15px;
     right: 45px;
-    width: auto;
+    width: 300px;
     height: auto;
     padding: 25px;
     background-color: greenyellow;
     border-radius: 5px;
     color: rgb(10, 10, 10);
+    position: relative;
+    z-index: 30;
 }
 
 /* .pin-container-icon {
@@ -157,7 +159,9 @@ form {
     fill: darkgreen;
     cursor: pointer;
     opacity: 0.4;
-    font-size: 32px
+    font-size: 32px;
+    position: relative;
+    z-index: 30;
 }
 
 .icon-close {
@@ -280,6 +284,7 @@ input {
 
 .rotate-scale-up {
     animation: rotate-scale-up 0.65s linear both;
+    z-index: 30
 }
 /**
  * ----------------------------------------
@@ -290,18 +295,16 @@ input {
     display: flex;
     align-items: center;
  }
-.main-timer svg {
-  color:green;
-  font-size: 32px;
-}
+
 .timer-search-bar{
     background: plum;
     color:white;
     padding: 15px;
-    position: absolute;
-    bottom: -15px;
-    left: -45px;
-    right: -45px;
+    position: fixed;
+    z-index: 20;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 40px;
     display: flex;
     align-items: center;
@@ -318,20 +321,23 @@ input {
 footer{
     position: fixed;
     bottom: 15px;
-    left: 45px;
+    width: 100px;
     right: 45px;
     display: flex;
     justify-content: flex-end;
-  
+    z-index:30   
 }
-
+footer .main-timer svg{
+    color:green;
+    font-size: 32px;
+}
 .container-search-pop-up{
-    position: absolute;
-    bottom: 100px;
+    position: fixed;
+    top: 100px;
     color: black;
-    width: 100%;
+    left: 30px;
+    right: 30px;
     height: 500px;
-    left: 0;
     background: white;
     box-shadow: 10px 10px 100px grey
 }

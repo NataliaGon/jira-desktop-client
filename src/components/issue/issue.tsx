@@ -5,7 +5,7 @@ import { FaEye } from "react-icons/fa";
 import { connect } from 'react-redux';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
 import { toPin } from './issue.actions';
-import Timer from '../timer/timer';
+import MainTimer from '../main-timer/main-timer';
 import IssueEdit from '../issue-edit/issue-edit';
 
 interface DraggableProperties extends ComponentBaseProperties {
@@ -45,7 +45,7 @@ class Draggable extends ComponentBase<DraggableProperties, DraggableState>{
           <div className="pin-icon-wrapper" onClick={() => this.props.toPin(this.props.issue)}><GoPin /></div>
           <div className="display-flex">
             <FaEye onClick={() => this.watchMore(this)} />
-            <Timer id={this.props.issue.id}/>
+            <MainTimer id={this.props.issue.id} name={this.props.issue.key}/>
           </div>
         </div>
       </div>

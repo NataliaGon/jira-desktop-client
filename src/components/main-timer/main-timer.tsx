@@ -31,31 +31,34 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
 
     }
     renderTimerBar() {
-        if (this.props.id) {
+        console.log(this.props.id);
+        if (this.props.name) {
             return (
-                <div className="timer-search-bar">
-                    {this.props.id}
+                <div className='timer-search-bar'>
+                    {this.props.name}
                     <MdPause className={
                         this.state.isStop ? 'display' : 'display-none'
                     }
                         onClick={() => this.stopTimer()} />
+                    {this.state.time ? `you've worked ${this.state.time / 3600000} hours` : ''}
                 </div>
             )
         } else {
             return (
-                <div className="timer-search-bar">
+                <div className='timer-search-bar'>
                     Where to sign this time?
                    <MdPause className={
                         this.state.isStop ? 'display' : 'display-none'
                     }
                         onClick={() => this.stopTimer()} />
+                    {this.state.time ? `you've worked ${this.state.time / 3600000} hours` : ''}
+                    <button className='main-btn' onClick={() => this.handleCloseTimeBar()}>cansel</button>
                 </div>
             )
         }
     }
     stopTimer() {
-        const time = Date.now() - this.state.start
-        console.log(time);
+        this.setState({ time: Date.now() - this.state.start })
         this.setState({
             isStart: true,
             isStop: false
@@ -74,7 +77,9 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
                     issueId: this.props.id,
                     issue: issueNew
                 }
-                ipcRenderer.send('editIssue', issue)
+                ipcRenderer.send('editIssue', issue);
+                alert('your time is saved');
+                this.setState({ isSearchPopUp: false })
             } else {
                 this.setState({ isSearchPopUp: true })
             }
@@ -85,18 +90,20 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
     }
     mainRender = () => {
         if (this.state.isBottomBar) {
-            return (
-                <div className="timer-search-bar">
-                    Where to sign this time?
-                   <MdPause className={
-                        this.state.isStop ? 'display' : 'display-none'
-                    }
-                        onClick={() => this.stopTimer()} />
-                    <IoIosTimer className={
-                        this.state.isStart ? 'display' : 'display-none'
-                    } onClick={() => this.startTimer()} />
-                </div>
-            )
+            return this.renderTimerBar()
+            // return (
+            //     <div className="timer-search-bar">
+            //         Where to sign this time?
+            //        <MdPause className={
+            //             this.state.isStop ? 'display' : 'display-none'
+            //         }
+            //             onClick={() => this.stopTimer()} />
+            //         <IoIosTimer className={
+            //             this.state.isStart ? 'display' : 'display-none'
+            //         } onClick={() => this.startTimer()} />
+            //        {this.state.time? `you've worked ${this.state.time/3600000} hours`:''}
+            //     </div>
+            // )
         } else {
             return (
                 <div className="main-timer">
@@ -107,7 +114,13 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
 
         }
     }
-
+    handleCloseTimeBar() {
+        this.setState({
+            isBottomBar: false,
+            isStart: true,
+            // isStop: false
+        })
+    }
     public render() {
         const style = {
             display: 'flex',
