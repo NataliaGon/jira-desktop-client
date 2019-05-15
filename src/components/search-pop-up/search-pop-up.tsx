@@ -17,12 +17,11 @@ export default class SearchPopUp extends ComponentBase<SearchPopUpProperties, Se
     }
 
 public render() {
-
     return (
         <div className="container-search-pop-up">
-            search
-
-          <div className="icon-close"><TiDelete onClick={() => this.openPin()} /></div> 
+          <div className="icon-close"><TiDelete onClick={() => this.props.handleClose()} /></div> 
+          search
+          <button className="main-btn">create new issue</button>
         </div>
     )
 }

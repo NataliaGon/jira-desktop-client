@@ -30,18 +30,18 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
         })
 
     }
-    renderTimerBar(){
-        if(this.props.id){
+    renderTimerBar() {
+        if (this.props.id) {
             return (
                 <div className="timer-search-bar">
                     {this.props.id}
-                   <MdPause className={
+                    <MdPause className={
                         this.state.isStop ? 'display' : 'display-none'
                     }
                         onClick={() => this.stopTimer()} />
                 </div>
             )
-        }else{
+        } else {
             return (
                 <div className="timer-search-bar">
                     Where to sign this time?
@@ -76,19 +76,25 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
                 }
                 ipcRenderer.send('editIssue', issue)
             } else {
-               this.setState({isSearchPopUp:true})
+                this.setState({ isSearchPopUp: true })
             }
         }
     }
+    closePopUp = () => {
+        this.setState({ isSearchPopUp: false })
+    }
     mainRender = () => {
         if (this.state.isBottomBar) {
-            return ( 
+            return (
                 <div className="timer-search-bar">
                     Where to sign this time?
                    <MdPause className={
                         this.state.isStop ? 'display' : 'display-none'
                     }
                         onClick={() => this.stopTimer()} />
+                    <IoIosTimer className={
+                        this.state.isStart ? 'display' : 'display-none'
+                    } onClick={() => this.startTimer()} />
                 </div>
             )
         } else {
@@ -110,7 +116,7 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
         return (
             <div style={style}>
                 {this.mainRender()}
-                {this.state.isSearchPopUp?<SearchPopUp/>: ''}
+                {this.state.isSearchPopUp ? <SearchPopUp handleClose={this.closePopUp} /> : ''}
             </div>
         )
     }
