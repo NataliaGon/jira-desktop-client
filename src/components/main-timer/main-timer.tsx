@@ -17,7 +17,8 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
         isStart: true,
         isStop: false,
         isBottomBar: false,
-        isSearchPopUp: false
+        isSearchPopUp: false,
+        isPopUpNewIssue: false,
     }
     startTimer() {
         this.setState({
@@ -93,6 +94,9 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
             isStart: true,
         })
     }
+    openPopUpCreateNewIssue(){
+       this.state.state({isPopUpNewIssue:true})
+    }
     public render() {
         const style = {
             display: 'flex',
@@ -102,6 +106,7 @@ export default class MainTimer extends ComponentBase<MainTimerProperties, MainTi
             <div style={style}>
                 {this.mainRender()}
                 {this.state.isSearchPopUp ? <SearchPopUp handleClose={this.closePopUp} /> : ''}
+                {/* {this.state.isPopUpNewIssue ? <NewIssue handleClose={this.closePopUp} /> : ''} */}
             </div>
         )
     }

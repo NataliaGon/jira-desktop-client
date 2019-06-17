@@ -17,7 +17,9 @@ export class Boards extends ComponentBase<BoardsProperties, BoardsState>{
 
     componentDidMount(){
         ipcRenderer.on('boards', (event: any, boards?: Board) => {
-            this.setState({ boards: boards.values })
+            console.log(boards);
+            this.setState({ boards: boards })
+            // this.setState({ boards: boards.values })
         })
     }
     

@@ -23,6 +23,7 @@ if (isDevMode) {
 }
 
 const createWindow = async () => {
+
   mainWindow = new BrowserWindow({
     width: 1400,
     height: 1000,
@@ -52,7 +53,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-
   if (mainWindow === null) {
     createWindow();
   }
@@ -80,18 +80,7 @@ function renderIssues(data: any, boardName:string, boardId:number) {
   const issues = issuesData.getIssues();
   mainWindow.send('issues', issues, boardId, boardName);
 }
-// function renderGroup(group:any){
-//   console.log('fs');
-// }
-// function showResalts(data){
-//   mainWindow.send('searchResults', data);
-// }
 
-// function manageProjects(projects){
-// console.log(`our projects ${JSON.stringify(projects)}`);
-// const projectsData= new storeElectron.issuesStore({ name:`projects`});
-// projectsData.addIssues(projects);
-// }
 
 ipcMain.on('getIssues', (event?: any, boardId?:number, boardName?:string, startAt?:number) => {
   apiProvider.getIssues(user.name, user.password, renderIssues, boardId, boardName, startAt);
@@ -99,6 +88,7 @@ ipcMain.on('getIssues', (event?: any, boardId?:number, boardName?:string, startA
 
 
 ipcMain.on('hello-jira', (event: any, user: any) => {
+ 
   apiProvider.getBoard(user.name, user.password, handleDataBoards);
   apiProvider.getUserProfile(user.name, user.password, renderUser);
   // apiProvider.getUserGroup(user.name, user.password);
@@ -110,9 +100,10 @@ ipcMain.on('editIssue', (event: any, issue: any) => {
 ipcMain.on('check-user', () => {
   if (user) {
     mainWindow.send('login', true);
+    const boardsOffline=boardsStore.getProjects();
+    mainWindow.send('boards', boardsOffline.projects[0].values);
     apiProvider.getBoard(user.name, user.password, handleDataBoards);
     apiProvider.getUserProfile(user.name, user.password, renderUser);
-    // apiProvider.getStatuses(user.name, user.password);
   }
 })
 

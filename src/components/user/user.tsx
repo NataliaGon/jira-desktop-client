@@ -24,8 +24,8 @@ export class User extends ComponentBase<UserProperties, UserState>{
 
         return (
          <div className="user-container">
-          <h3> {this.state.user.displayName} </h3>
-          <h3>  {this.state.user.emailAddress} </h3>
+             {this.state.user? <div><h3>{this.state.user.displayName}</h3>
+             <h3>  {this.state.user.emailAddress} </h3></div>:<h3>No user log in</h3>}
          </div>
         )
     }

@@ -4,6 +4,8 @@ import {MdPause} from 'react-icons/md';
 import { ComponentBaseProperties, ComponentBaseState, ComponentBase } from '../../base-classes';
 const { ipcRenderer } = require('electron');
 
+
+
 interface TimerProperties extends ComponentBaseProperties {
  id?:number
 }
